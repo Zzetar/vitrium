@@ -45,10 +45,8 @@ public class PedidoGrabar {
 		    }
 		   // Proveedor  del pedido
 		   System.out.println("proveedor  del pedido");
-		   proveedor= new Proveedor();
-		   proveedor.setCodPro(teclado.leerCadena());
 		   // creamos el pedido	 
-		 	 pedido= new Pedido(fecha,proveedor);
+		 	 pedido= new Pedido(fecha);
 		   // pedir  por teclado datos de las lineas del pedido;
 		 	System.out.println("Quiere introducir lineas de pedido S/N");
 		 	mas=teclado.leerCadena();
