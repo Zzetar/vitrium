@@ -1,0 +1,118 @@
+﻿create or replace procedure insertarCliente(pcod_cli varchar2,
+                                            prazon_social varchar2,
+                                            ptelf varchar2,
+                                            pdireccion varchar2,
+                                            poferta varchar2,
+                                            palb_fact varchar2,
+                                            pcod_iva varchar2,
+                                            pcod_tarifa varchar2,
+                                            pforma_pago varchar2)
+as
+I number(1);
+A varchar2(1);
+fallo_fk exception;
+pragma exception_init(fallo_fk,-2291);
+begin
+--codigo cliente
+if trim(pcod_cli) is null then
+  raise_application_error(-20001,'El código de cliente es obligatorio');
+end if;
+if length(trim(pcod_cli)) >10 then 
+  raise_application_error(-20001,'Longitud del número de cliente no valido');
+end if;
+--razon social
+if trim(prazon_social) is null then
+  raise_application_error(-20001,'La razón social es obligatorio');
+end if;
+if length(trim(prazon_social)) >20 then 
+  raise_application_error(-20001,'Longitud de la razón social no valido');
+end if;
+--telefono
+if length(trim(ptelf)) >9 then 
+  raise_application_error(-20001,'Longitud del teléfono no valido');
+end if;
+--direccion
+if trim(pdireccion) is null then
+  raise_application_error(-20001,'La dirección es obligatoria');
+end if;
+if length(trim(pdireccion)) >50 then 
+  raise_application_error(-20001,'Longitud de la dirección no valida');
+end if;
+--oferta
+if trim(poferta) is null then
+  raise_application_error(-20001,'Indicar si tiene o no oferta es obligatorio');
+end if;
+if upper(trim(poferta)) not in ('S', 'N') then
+  raise_application_error(-20001,'La oferta solo puede ser S o N');
+end if;
+--albaran factura
+if trim(palb_fact) is null then
+  raise_application_error(-20001,'Indicar si tiene o no albarán de factura es obligatorio');
+end if;
+if upper(trim(palb_fact)) not in ('S', 'N') then
+  raise_application_error(-20001,'El albarán de factura solo puede ser S o N');
+end if;
+--codigo iva
+if trim(pcod_iva) is null then
+  raise_application_error(-20001,'El código de IVA es obligatorio');
+end if;
+if length(trim(pcod_iva)) >10 then 
+  raise_application_error(-20001,'Longitud del IVA de cliente no valido');
+end if;
+--codigo tarifa
+if trim(pcod_tarifa) is null then
+  raise_application_error(-20001,'El código de tarifa es obligatorio');
+end if;
+if length(trim(pcod_tarifa)) >10 then 
+  raise_application_error(-20001,'Longitud de la tarifa no valido');
+end if;
+--forma de pago
+if trim(pforma_pago) is null then
+  raise_application_error(-20001,'La forma de pago es obligatoria');
+end if;
+if length(trim(pforma_pago)) >10 then 
+  raise_application_error(-20001,'Longitud de la forma de pago no valida');
+end if;
+
+I:=0;
+select '1' into A from ivas where cod_iva=pcod_iva;
+I:=1;
+select '1' into A from tarifas where cod_tarifa=pcod_tarifa;
+I:=2;
+select '1' into A from formas_pago where codigo=pforma_pago;
+
+insert into clientes(cod_cli,
+                     razon_social, 
+                     telf,
+                     direccion,
+                     oferta,
+                     alb_fact,
+                     cod_iva,
+                     cod_tarifa,
+                     forma_pago) values(upper(trim(pcod_cli)),
+                                        upper(trim(prazon_social)),
+                                        upper(trim(ptelf)),
+                                        upper(trim(pdireccion)),
+                                        upper(trim(poferta)),
+                                        upper(trim(palb_fact)),
+                                        upper(trim(pcod_iva)),
+                                        upper(trim(pcod_tarifa)),
+                                        upper(trim(pforma_pago)));
+
+exception
+when dup_val_on_index then
+  raise_application_error(-20001,'El cliente ya existe');
+  
+when no_data_found then
+  if (I=0) then
+    raise_application_error(-20001,'El IVA no existe');
+  elsif (I=1) then
+    raise_application_error(-20001,'El tarifa no existe');
+  else
+    raise_application_error(-20001,'El forma de pago no existe');
+  end if;
+
+when fallo_fk then
+  raise_application_error(-20001,'Operación no disponible temporalmente, repita el proceso');
+
+end;
