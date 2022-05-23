@@ -57,7 +57,7 @@ public class PedidoListar{
 		   pedido=sPedido.recuperarCabeceraPedido(pedido);
 		   if(pedido!=null){
 		   
-		   System.out.println(pedido.getnPed()+ "   "+pedido.getFechaPed()+ "   "+sProveedor.recuperarProveedor(pedido.getProveedor()).getRazonSocial());
+		   System.out.println(pedido.getnPed()+ "   "+pedido.getFechaPed());
 		   lineasPedido=sPedido.recuperarDetallePedido(pedido);
 		   for(LinPed linea:lineasPedido){
 			   
