@@ -32,56 +32,6 @@ public class ServicioCliente {
 			trans =  new TransaccionesManager();
 			clienteDAO=trans.getClienteDAO();
 			clienteDAO.insertarCliente(cliente);
-			
-			
-			
-
-
-			trans.closeCommit();
-		} catch (DAOException e) {
-
-			try{
-				if(trans!=null)
-				trans.closeRollback();
-			}catch (DAOException e1){
-				throw new ServiceException(e.getMessage(),e1);//Error interno
-			}
-
-			if(e.getCause()==null){
-				throw new ServiceException(e.getMessage());//Error Lógico
-			}else{
-
-				throw new ServiceException(e.getMessage(),e);//Error interno
-			}
-
-		}
-	}
-	public void insertarCliente(String codcli,
-			String razonsocial,
-			String telf,
-			String direccion,
-			String oferta,
-			String albfact,
-			String  iva,
-			String  tarifa,
-			String formapago) throws ServiceException{
-
-		TransaccionesManager trans = null;
-		ClienteDAO clienteDAO=null;
-		try {
-
-			trans = new TransaccionesManager();
-			clienteDAO = trans.getClienteDAO();
-			clienteDAO.insertarClienteProcedure(codcli,
-					razonsocial,
-					telf,
-					direccion,
-					oferta,
-					albfact,
-					iva,
-					tarifa,
-					formapago);
-
 
 			trans.closeCommit();
 		} catch (DAOException e) {

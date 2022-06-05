@@ -250,25 +250,26 @@
             }
 
         
-        //////////////////////////////////////////
+            //////////////////////////////////////////
 
-        if (!estaTodoOK) {
-            alert(mensaje);
-        } else {
-            
-            alert("FORMULARIO CORRECTO. ENVIADO. \nNombre: "+ Nombre.value 
-            + ".\nPrimer apellido: "+ Apellido1.value
-            + ".\nSegundo apellido: "+ Apellido2.value
-            + ".\nCodigo Postal: " + cp.value
-            + ".\nlocalidad1: " + localidad1.value 
-            + ".\nProvincia: " +provincia.innerText
-            + ".\nDireccion: "+ Direccion.value
-            + ".\nUsuario: "+ Usuario.value
-            + ".\nEmail: " + email.value 
-            + ".\nContraseña: " + Password.value);
-            
-        }
-        return estaTodoOK;
+            if (!estaTodoOK) {
+                alert(mensaje);
+            } else {
+                document.getElementById("provinciaHidden").value= document.getElementById("provincia").innerHTML;
+
+                alert("FORMULARIO CORRECTO. ENVIADO. \nNombre: "+ Nombre.value 
+                + ".\nPrimer apellido: "+ Apellido1.value
+                + ".\nSegundo apellido: "+ Apellido2.value
+                + ".\nCodigo Postal: " + cp.value
+                + ".\nlocalidad1: " + localidad1.value 
+                + ".\nProvincia: " +provincia.innerText
+                + ".\nDireccion: "+ Direccion.value
+                + ".\nUsuario: "+ Usuario.value
+                + ".\nEmail: " + email.value 
+                + ".\nContraseña: " + Password.value);
+                
+            }
+            return estaTodoOK;
         }
 
     </script>
@@ -284,7 +285,7 @@
         <a class="active" style="float:right" href="IniciarSesion.html">Iniciar sesion</a>
     </div> 
 
-    <form id="formulario2" onsubmit="return validar()" action="grabar.php" >
+    <form id="formulario2" onsubmit="return validar()" action="cliente" method="post" >
         <div text align="center">
             <h1>Crea tu cuenta en Vitrium</h1><br>
         </div>
@@ -300,7 +301,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6" style="padding-left:0">
                     <div class="form-group">
                         Añada su primer apellido
                         <div class="input-group">
@@ -310,7 +311,7 @@
                         <p class="obligatorio" id="errorApellido1">El apellido debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" style="padding-right:0">
                     <div class="form-group">
                         Añada su segundo apellido
                         <div class="input-group">
@@ -329,7 +330,7 @@
                         Codigo Postal
                         <div class="input-group">
                             <span class="input-group-addon">Codigo Postal: </span>
-                            <input type="text" id="cp" class="form-control" required placeholder="Codigo postal" onblur="validarCPInside(this,5,5,errorCP)">
+                            <input type="text" id="cp" name="cp" class="form-control" required placeholder="Codigo postal" onblur="validarCPInside(this,5,5,errorCP)">
                         </div>
                         <p class="obligatorio" id="errorCP">El codigo postal debe tener 5 digitos</p>
                     </div>
@@ -339,7 +340,7 @@
                         Localidad
                         <div class="input-group">
                             <span class="input-group-addon">Localidad: </span>
-                            <input id="localidad1" type="text" required class="form-control" placeholder="Localidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,20,errorLocalidad1);" maxlength="20">
+                            <input id="localidad1" name="localidad1" type="text" required class="form-control" placeholder="Localidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,20,errorLocalidad1);" maxlength="20">
                         </div>
                         <p class="obligatorio" id="errorLocalidad1">La localidad es obligatoria debe tener 1-20 caracteres</p>
                     </div>
@@ -349,7 +350,8 @@
                         Provincia
                         <div class="input-group">
                             <span class="input-group-addon">Provincia: </span>
-                            <span id="provincia"  class="form-control" disabled></span>
+                            <span id="provincia" class="form-control" disabled="disabled"></span>
+                            <input type="hidden" id="provinciaHidden" name="provincia"></input>
                         </div>
                     </div>
                 </div>
@@ -360,7 +362,7 @@
             Añada su direccion
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="Direccion" name="nombre" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
+                <input id="Direccion" name="direccion" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
             </div>
             <p class="obligatorio" id="errorDireccion">La direccion debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
         </div>

@@ -8,14 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import recursos.DbQuery;
-import recursos.Recursos;
+import com.mysql.jdbc.Statement;
+
 import daos.interfaces.IClienteDAO;
 import domain.Cliente;
 import domain.FormaPago;
 import domain.Iva;
 import domain.Tarifa;
 import exceptions.DAOException;
+import recursos.DbQuery;
+import recursos.Recursos;
 
 public class ClienteDAO implements IClienteDAO {
 	
@@ -28,74 +30,32 @@ public class ClienteDAO implements IClienteDAO {
 	
 	public void insertarCliente(Cliente cliente)throws DAOException{
 		PreparedStatement st = null;
-		PreparedStatement sti = null;
-		ResultSet rs=null;
 		try {
-			st = con.prepareStatement(DbQuery.getInsertarCliente());
-			st.setString(1, cliente.getCodCli());
-			st.setString(2, cliente.getRazonSocial());
-			st.setString(3, cliente.getTelf());
-			st.setString(4, cliente.getDireccion());
-			st.setString(5, cliente.getOferta());
-			st.setString(6, cliente.getAlbFact());
-			st.setString(7, cliente.getIva().getcodIva());
-			st.setString(8, cliente.getTarifa().getCodTarifa());
-			st.setString(9, cliente.getFormaPago().getCodigo());
-			// rutina de verificacion de mas de una FK
+			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
+			st.setString(1, cliente.getNombre());
+			st.setString(2, cliente.getApellido1());
+			st.setString(3, cliente.getApellido2());
+			st.setString(4, cliente.getProvincia());
+			st.setString(5, cliente.getLocalidad());
+			st.setString(6, cliente.getDireccion());
+			st.setInt(7, cliente.getCodigoPostal());
+			st.setString(8, cliente.getEmail());
+			st.setString(9, cliente.getPassword());
 			
-			
-			
-			// para el iva
-			try{
-			  sti = con.prepareStatement(DbQuery.getRecuperarIva());
-			  sti.setString(1, cliente.getIva().getcodIva());
-			  rs=sti.executeQuery();
-			  if(!rs.next())	
-			  throw new DAOException(" el iva del cliente no existe");
-			 }  finally {
-				  Recursos.closeResultSet( rs);	
-			 }
-			 
-			
-			  // para la tarifa   
-			try{
-			  sti = con.prepareStatement(DbQuery.getRecuperarTarifa());
-			  sti.setString(1, cliente.getTarifa().getCodTarifa());
-			  rs=sti.executeQuery();
-			  if(!rs.next())	
-			  throw new DAOException(" La Tarifa del  cliente no existe");
-		    } finally {
-				  Recursos.closeResultSet( rs);	
-			 }
 					 
-			  // para la forma de Pago 
-			try{
-			  sti = con.prepareStatement(DbQuery.getRecuperarFormaPago());
-			  sti.setString(1, cliente.getFormaPago().getCodigo());
-			  rs=sti.executeQuery();
-			  if(!rs.next())	
-			  throw new DAOException(" La Tarifa del  cliente no existe");
-		     }  finally {
-			  Recursos.closeResultSet( rs);	
-		     }
-			
 			// ejecutamos el insert.			
 			st.executeUpdate();
+			ResultSet rs= st.getGeneratedKeys();
+			rs.next();
+			cliente.setIdCliente(rs.getInt(1));
 		} catch (SQLException e) {
-			if (e.getErrorCode() == ORACLE_DUPLICATE_PK) {
+			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
 				throw new DAOException(" cliente ya existe");
-			}else if (e.getErrorCode() ==ORACLE_FALLO_FK ){
-			   throw new DAOException("Operacion no disponible temporalmente,repita proceso");
-			}else if  (e.getErrorCode()>=20000 && e.getErrorCode()<=20999){
-				String cadena=e.toString().substring(e.toString().indexOf("ORA", 0)+10);
-				String cadena1=cadena.substring(0,cadena.indexOf("ORA", 0));
-			    throw new DAOException(cadena1);
 			} else {
-				throw new DAOException(DB_ERR, e);
+				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
 			}
 		} finally {
 			Recursos.closePreparedStatement(st);
-			Recursos.closePreparedStatement(sti);
 		}	
 	}
 	public void insertarClienteProcedure(String codcli,

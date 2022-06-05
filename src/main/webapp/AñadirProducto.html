@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+         function mostrar(elemento){
+        elemento.style.display = "block";
+        }
+
+        function noMostrar(elemento){
+            elemento.style.display = "none";
+        }
+
+        function entraFoco(elemento){
+            elemento.style.backgroundColor = "lightblue";
+        }
+
+        function saleFoco(elemento){
+            elemento.style.backgroundColor = "";
+        }
+
+        function entroEnFoco(elemento){
+            elemento.className="enfoco";
+        }
+
+        function salioDeFoco(elemento){
+            elemento.className=";"
+        }
+
+        function revOb(elemento){     //para lo obligatorio
+            if (esBlanco(elemento)) {
+                elemento.className="error";
+            }else{
+                elemento.className="";
+            }
+        }
+
+        //necesarios
+        function esBlanco(elemento) {
+            if (elemento.value=="") {
+                return true;
+            } else {
+                return false;	
+            }
+        }
+
+        function esNumero(elemento) {
+            if (elemento.value!="") {
+                var dato = elemento.value;
+                if (isNaN(dato)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        function longitud(elemento, min, max) {
+            if (elemento.value!="") {
+                var dato = elemento.value;
+                if (dato.length>=min && dato.length<=max) {
+                    return true;	
+                } else {
+                    return false;	
+                }
+            }
+        }
+
+        function validarStringInside(elemento,min,max,capaerror){ //para los campos tipo string de este formulario
+            if(!validarString(elemento.value,min,max)){
+                elemento.style.backgroundColor = "lightyellow";
+                elemento.style.borderColor = "red";
+                mostrar(capaerror);
+            }else{
+                elemento.style.backgroundColor = "";
+                elemento.style.borderColor = "";
+                noMostrar(capaerror);
+            }
+        }
+
+    function validarNumeroInside(elemento,min,max,capaerror){ //comprueba si es numerico el campo enviado 
+        if(!validarNumero(elemento.value,min,max)){
+            elemento.style.backgroundColor = "lightyellow";
+            elemento.style.borderColor = "red";	
+            mostrar(capaerror);
+        }else{
+            elemento.style.backgroundColor = "";
+            elemento.style.borderColor = "";
+            noMostrar(capaerror);				
+        }
+    }
+
+    </script>
+
+</head>
+<body>
+    <form id="formulario2" onsubmit="return validar()" action="grabar.php" >
+        <div text align="center">
+            <h1>Añadir producto</h1><br>
+        </div>
+
+        <div class="form-group">
+            Añada la categoria
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="Nombre" name="nombre" type="text" required class="form-control" placeholder="Nombre" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorNombre);" maxlength="100">
+            </div>
+            <p class="obligatorio" id="errorNombre">El Nombre debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        Añada el precio del producto
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="Precio" name="Precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,100,errorPrecio);" maxlength="100">
+                        </div>
+                        <p class="obligatorio" id="errorPrecio">El precio debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        Añada la cantidad de productos
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="Apellido2" name="apellido2" type="text" class="form-control" placeholder="Segundo apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,100,errorApellido2);" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        Codigo Postal
+                        <div class="input-group">
+                            <span class="input-group-addon">Codigo Postal: </span>
+                            <input type="text" id="cp" class="form-control" required placeholder="Codigo postal" onblur="validarCPInside(this,5,5,errorCP)">
+                        </div>
+                        <p class="obligatorio" id="errorCP">El codigo postal debe tener 5 digitos</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        Localidad
+                        <div class="input-group">
+                            <span class="input-group-addon">Localidad: </span>
+                            <input id="localidad1" type="text" required class="form-control" placeholder="Localidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,20,errorLocalidad1);" maxlength="20">
+                        </div>
+                        <p class="obligatorio" id="errorLocalidad1">La localidad es obligatoria debe tener 1-20 caracteres</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        Provincia
+                        <div class="input-group">
+                            <span class="input-group-addon">Provincia: </span>
+                            <span id="provincia"  class="form-control" disabled></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            Añada su direccion
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="Direccion" name="nombre" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
+            </div>
+            <p class="obligatorio" id="errorDireccion">La direccion debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
+        </div>
+
+
+        <div class="form-group">
+            Añada su Email
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">
+            </div>
+            <p class="obligatorio" id="errorEmail">El formato del email no es correcto.</p>
+        </div>
+
+        <div class="form-group">
+            Añada su nombre de usuario
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="Usuario" name="usuario" type="text" required class="form-control" placeholder="Usuario" onfocus="entraFoco(this)" onblur="saleFoco(this);" onkeyup=" validarUsuarioInside(this,2,15,errorUsuario,existeUsuario);" maxlength="15">
+            </div>
+            <p class="obligatorio" id="errorUsuario">El Usuario debe de ser obligatorio y tener entre 2 y 15 caracteres</p>
+            <p class="obligatorio" id="existeUsuario">El usuario ya existe </p>
+        </div>
+
+        <div class="form-group">
+            Añada su password
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="Password" name="password" type="password" required class="form-control" placeholder="Password" onfocus="entraFoco(this)" onblur="saleFoco(this);validarCodigoInside(this,2,12,errorPassword);" maxlength="12">
+            </div>
+            <p class="obligatorio" id="errorPassword">La pasword es obligatoria y debe tener entre 2 y 15 caracteres</p>
+        </div>
+
+        <div class="form-group">
+            repita su password
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="Password2" type="password" required class="form-control" placeholder="Repita Password" onfocus="entraFoco(this)" onblur="saleFoco(this);validarPasswordInside(this,2,20,errorPassword2);" maxlength="20">
+            </div>
+            <p class="obligatorio" id="errorPassword2">El Password debe coincidir y tener entre 2 y 15 caracteres</p>
+        </div>
+
+        
+
+        <div text align="center">
+        <h3><button type="submit" id="submit" value="submit">Enviar</button></h3>
+        </div>
+
+    </form>
+    
+</body>
+</html>

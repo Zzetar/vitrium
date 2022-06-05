@@ -23,8 +23,7 @@ public class DbQuery {
 			
 
 		// clientes
-	private static final String InsertarCliente = "insert into clientes(cod_cli,razon_social,telf,direccion,oferta,"
-				+ "alb_fact,cod_iva,cod_tarifa,forma_pago) values (?,?,?,?,?,?,?,?,?)";
+	private static final String InsertarCliente = "insert into clientes(nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, email, contraseña) values (?,?,?,?,?,?,?,?,?)";
 	private static final String ModificarCliente = "update clientes set razon_social=?,telf=?,direccion=?,oferta=?,"
 	+ "alb_fact=?,cod_iva=?,cod_tarifa=?,forma_pago=? where cod_cli=?";
 

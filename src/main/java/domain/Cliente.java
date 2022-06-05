@@ -5,73 +5,155 @@ import exceptions.DomainException;
 
 public class Cliente {
  
-	private  String codcli;
-	private  String razonsocial;
-	private  String telf;// puede ser nulo
+	private  int idCliente;
+	private  String nombre;
+	private  String apellido1;// puede ser nulo
+	private  String apellido2;
+	private  int codigoPostal;
+	private  String localidad;
+	private  String provincia;
 	private  String direccion;
-	private  String oferta;
-	private  String albfact;
-	private  Iva iva;
-	private  Tarifa  tarifa;
-	private  FormaPago formapago;
-	
-	public Cliente(){}
+	private  String email;
+	private  String password;
 	
 	
-public Cliente(String codcli) {this.codcli = codcli;}
-	
-	/**
-	 * @param codcli
-	 * @param razonsocial
-	 * @param telf
-	 * @param direccion
-	 * @param oferta
-	 * @param albfact
-	 * @param iva
-	 * @param tarifa
-	 * @param formapago
-	 */
-	public Cliente(String codcli, String razonsocial, String telf,
-			String direccion, String oferta, String albfact, Iva iva,
-			Tarifa tarifa, FormaPago formapago) {
+	public Cliente(){
 		
-		this.codcli = codcli;
-		this.razonsocial = razonsocial;
-		this.telf = telf;
-		this.direccion = direccion;
-		this.oferta = oferta;
-		this.albfact = albfact;
-		this.iva = iva;
-		this.tarifa = tarifa;
-		this.formapago = formapago;
 	}
-	public Cliente(Cliente cliente){
-    	 
-    	setCodCli(cliente.codcli);
-    	setRazonSocial(cliente.razonsocial);
-    	setTelf(cliente.telf);
-    	setDireccion(cliente.direccion);
-    	setOferta(cliente.oferta);
-    	setAlbFact (cliente.albfact);
-    	setIva (cliente.iva);
-    	setTarifa (cliente.tarifa);
-    	setFormaPago (cliente.formapago);
-    	
-    	
-    }
 
-  
 
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getApellido1() {
+		return apellido1;
+	}
+
+
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+
+	public int getCodigoPostal() {
+		return codigoPostal;
+	}
+
+
+	public void setCodigoPostal(int codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
+
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cliente [idCliente=");
+		builder.append(idCliente);
+		builder.append(", nombre=");
+		builder.append(nombre);
+		builder.append(", apellido1=");
+		builder.append(apellido1);
+		builder.append(", apellido2=");
+		builder.append(apellido2);
+		builder.append(", codigoPostal=");
+		builder.append(codigoPostal);
+		builder.append(", localidad=");
+		builder.append(localidad);
+		builder.append(", provincia=");
+		builder.append(provincia);
+		builder.append(", direccion=");
+		builder.append(direccion);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append("]");
+		return builder.toString();
+	}
 	
-
-
 	/**
 	 * @param codcli
 	 */
-	
 
-
-	public String getCodCli() {
+	/*public String getCodCli() {
 		return codcli;
 	}
 	public void setCodCli(String codcli) {
@@ -80,137 +162,7 @@ public Cliente(String codcli) {this.codcli = codcli;}
 		} else {
 			throw new DomainException("La longitud del codigo del cliente no es válida.");
 		}
-	}
-	
-	public String getRazonSocial() {
-		return razonsocial;
-	}
-	
-	public void setRazonSocial(String razonsocial) {
-		if (Validator.length(razonsocial, 1, 20)) {
-			this.razonsocial = razonsocial.trim();
-		} else {
-			throw new DomainException("La longitud de la razón social del cliente no es válida.");
-		}
-	}
-	
-	public String getTelf(){
-			return telf;
-	}
-	
-	
-	public void setTelf(String telf) {
-		if(telf==null || telf.trim().length()==0){
-			this.telf=null;
-		}
-		else {
-			if (Validator.telephone(telf, 1, 9)) {
-			this.telf = telf.trim();
-		    } else {
-			throw new DomainException("El teléfono no es válido.");
-		    }
-		}	
-	}
-	
-	
-	public String getDireccion() {
-		return direccion;
-	}
-	
-	
-	public void setDireccion(String direccion) {
-		if (Validator.length(direccion, 1, 50)) {
-			this.direccion = direccion.trim();
-		} else {
-			throw new DomainException("La longitud de la dirección del cliente no es válida.");
-		}
-	}
-	public String getOferta() {
-		return oferta;
-	}
-	
-	public void setOferta(String oferta) {
-		if (Validator.length(oferta, 1, 1)) {
-			if (oferta.compareTo("S")==0||oferta.compareTo("N")==0)
-				this.oferta = oferta;
-			else 
-				throw new DomainException("oferta S/N.");
-		} else {
-			throw new DomainException("La longitud del campo oferta no es válida.");
-		}	
-	}
-	
-	public String getAlbFact() {
-		return albfact;
-	}
-	
-	public void setAlbFact(String albfact) {
-		if (Validator.length(albfact, 1, 1)) {
-			if (albfact.compareTo("S")==0||albfact.compareTo("N")==0)
-				this.albfact = albfact;
-			else 
-				throw new DomainException("El valor para el campo albfact no valido S/N.");
-		} else {
-			throw new DomainException("La longitud del campo albarán/factura no es válida.");
-		}	
-	}
-	
-	public Iva getIva() {
-		return iva;
-	}
-
-	public void setIva(Iva iva) {
-		if (iva != null) {
-			this.iva = iva;
-		} else {
-			throw new DomainException("El  iva del cliente es obligatorio.");
-		}
-	}
-	
-	
-	public Tarifa getTarifa() {
-		return tarifa;
-	}
-	
-	public void setTarifa(Tarifa tarifa) {
-		if (tarifa !=null) {
-			this.tarifa = tarifa;
-		} else {
-			throw new DomainException("La tarifa del cliente es obligatoria.");
-		}
-	}
-	
-	
-	public FormaPago getFormaPago() {
-		return formapago;
-	}
-
-	
-	public void setFormaPago(FormaPago formapago) {
-		if (formapago!=null ) {
-			this.formapago = formapago;
-		} else {
-			throw new DomainException("la forma de pago del cliente es obligatoria.");
-		}
-	}
-
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Cliente [codcli=" + codcli + ", razonsocial=" + razonsocial
-				+ ", telf=" + telf + ", direccion=" + direccion + ", oferta="
-				+ oferta + ", albfact=" + albfact + ", iva=" + iva
-				+ ", tarifa=" + tarifa + ", formapago=" + formapago + "]";
-	}
-	public String toStringFashion() {
-		return "Cliente [codcli=" + codcli + ", razonsocial=" + razonsocial
-				+ ", telf=" + telf + ", direccion=" + direccion + ", oferta="
-				+ oferta + ", albfact=" + albfact + ", iva=" + iva.gettipoIva()
-				+ ", tarifa=" + tarifa.getDescripcion() + ", formapago=(" + formapago.getNumeroVtos()+" vencinientos a  "+formapago.getDias()+" Días)" + "]";
-	}
+	}*/
 	
 	
 }
