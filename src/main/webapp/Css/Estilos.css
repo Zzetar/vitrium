@@ -4,34 +4,65 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-  }
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
   
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
-  }
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-right:3px solid #bbb;
   
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    border-right:3px solid #bbb;
-    
-  }
+}
   
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
  
-  }
+}
   
-  .topnav a.active {
-    background-color: #04AA6D;
-    color: white;
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
 
-  }
+}
 
+.form-group{
+  background-color: white;
+  padding: 0 2% 1% 2%;
+}
+
+
+#formulario2{
+  background-color: rgb(186, 218, 129);
+  border: 5px solid rgb(243, 107, 10);
+  padding: 0 2% 1% 2%;
+  border-radius: 50px;
+  
+}
+
+.obligatorio{
+	display: none;
+	color: red;
+	font-family: "Verdana";
+	font-size: 90%;
+	padding-bottom: 3%;
+}
+
+#submit{
+  background-color: rgb(0, 119, 255);
+padding: 0 2% 1% 2%;
+}
+
+#submit2{
+	border: rgb(247, 0, 255) solid 2px;
+    background-color: rgb(0, 238, 255);
+}
  
