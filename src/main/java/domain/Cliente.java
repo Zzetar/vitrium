@@ -7,8 +7,8 @@ public class Cliente {
  
 	private  int idCliente;
 	private  String nombre;
-	private  String apellido1;// puede ser nulo
-	private  String apellido2;
+	private  String apellido1;
+	private  String apellido2;// puede ser nulo
 	private  int codigoPostal;
 	private  String localidad;
 	private  String provincia;

@@ -107,9 +107,9 @@
             Añada la categoria
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="Nombre" name="nombre" type="text" required class="form-control" placeholder="Nombre" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorNombre);" maxlength="100">
+                <input id="Categoria" name="Categoria" type="text" required class="form-control" placeholder="Categoria" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorCategoria);" maxlength="100">
             </div>
-            <p class="obligatorio" id="errorNombre">El Nombre debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+            <p class="obligatorio" id="errorCategoria">La categoria debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
         </div>
 
         <div class="container-fluid">
@@ -119,9 +119,9 @@
                         Añada el precio del producto
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="Precio" name="Precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,100,errorPrecio);" maxlength="100">
+                            <input id="Precio" name="Precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,5,errorPrecio);" maxlength="5">
                         </div>
-                        <p class="obligatorio" id="errorPrecio">El precio debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+                        <p class="obligatorio" id="errorPrecio">El precio debe de ser obligatorio y tener entre 2 y 5 caracteres</p>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -129,95 +129,24 @@
                         Añada la cantidad de productos
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="Apellido2" name="apellido2" type="text" class="form-control" placeholder="Segundo apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,100,errorApellido2);" maxlength="100">
+                            <input id="Cantidad" name="Cantidad" type="text" required class="form-control" placeholder="Cantidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,5,errorCantidad);" maxlength="5">
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        Codigo Postal
-                        <div class="input-group">
-                            <span class="input-group-addon">Codigo Postal: </span>
-                            <input type="text" id="cp" class="form-control" required placeholder="Codigo postal" onblur="validarCPInside(this,5,5,errorCP)">
-                        </div>
-                        <p class="obligatorio" id="errorCP">El codigo postal debe tener 5 digitos</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        Localidad
-                        <div class="input-group">
-                            <span class="input-group-addon">Localidad: </span>
-                            <input id="localidad1" type="text" required class="form-control" placeholder="Localidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,20,errorLocalidad1);" maxlength="20">
-                        </div>
-                        <p class="obligatorio" id="errorLocalidad1">La localidad es obligatoria debe tener 1-20 caracteres</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        Provincia
-                        <div class="input-group">
-                            <span class="input-group-addon">Provincia: </span>
-                            <span id="provincia"  class="form-control" disabled></span>
-                        </div>
+                        <p class="obligatorio" id="errorCantidad">La cantidad debe de ser obligatorio y tener entre 2 y 5 caracteres</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            Añada su direccion
+            Añada una descripcion
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="Direccion" name="nombre" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
+                <input id="Descripcion" name="Descripcion" type="text" required class="form-control" placeholder="Descripcion" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,1000,errorDescripcion);" maxlength="1000">
             </div>
-            <p class="obligatorio" id="errorDireccion">La direccion debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
+            <p class="obligatorio" id="errorDescripcion">La descripcion debe de ser obligatoria y tener entre 2 y 1000 caracteres</p>
         </div>
 
 
-        <div class="form-group">
-            Añada su Email
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">
-            </div>
-            <p class="obligatorio" id="errorEmail">El formato del email no es correcto.</p>
-        </div>
-
-        <div class="form-group">
-            Añada su nombre de usuario
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="Usuario" name="usuario" type="text" required class="form-control" placeholder="Usuario" onfocus="entraFoco(this)" onblur="saleFoco(this);" onkeyup=" validarUsuarioInside(this,2,15,errorUsuario,existeUsuario);" maxlength="15">
-            </div>
-            <p class="obligatorio" id="errorUsuario">El Usuario debe de ser obligatorio y tener entre 2 y 15 caracteres</p>
-            <p class="obligatorio" id="existeUsuario">El usuario ya existe </p>
-        </div>
-
-        <div class="form-group">
-            Añada su password
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="Password" name="password" type="password" required class="form-control" placeholder="Password" onfocus="entraFoco(this)" onblur="saleFoco(this);validarCodigoInside(this,2,12,errorPassword);" maxlength="12">
-            </div>
-            <p class="obligatorio" id="errorPassword">La pasword es obligatoria y debe tener entre 2 y 15 caracteres</p>
-        </div>
-
-        <div class="form-group">
-            repita su password
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="Password2" type="password" required class="form-control" placeholder="Repita Password" onfocus="entraFoco(this)" onblur="saleFoco(this);validarPasswordInside(this,2,20,errorPassword2);" maxlength="20">
-            </div>
-            <p class="obligatorio" id="errorPassword2">El Password debe coincidir y tener entre 2 y 15 caracteres</p>
-        </div>
-
-        
 
         <div text align="center">
         <h3><button type="submit" id="submit" value="submit">Enviar</button></h3>

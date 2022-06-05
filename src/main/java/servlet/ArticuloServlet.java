@@ -8,21 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Articulo;
 import domain.Cliente;
 import exceptions.ServiceException;
+import servicios.ServicioArticulo;
 import servicios.ServicioCliente;
 
 /**
  * Servlet implementation class OperacionesCliente
  */
 @WebServlet("/cliente")
-public class ClienteServlet extends HttpServlet {
+public class ArticuloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClienteServlet() {
+    public ArticuloServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,14 +44,14 @@ public class ClienteServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String salida= null;
 	
-		ServicioCliente sCliente = new ServicioCliente();
+		ServicioArticulo sArticulo = new ServicioArticulo();
 		try {
-			Cliente cliente= clienteDePeticion(request);
-			sCliente.insertarCliente(cliente);
-			request.getSession().setAttribute("cliente", cliente);
+			Articulo articulo= articuloDePeticion(request);
+			sArticulo.insertarArticulo(articulo);
+			request.getSession().setAttribute("articulo", articulo);
 			
 			salida="/ProductosDisponibles.jsp";
-			request.setAttribute("info","Cliente dado de alta correctamente");
+			request.setAttribute("info","Articulo dado de alta correctamente");
 			
 		} catch (ServiceException e) {
 			e.printStackTrace();// para administrador 
@@ -60,19 +62,14 @@ public class ClienteServlet extends HttpServlet {
 		getServletContext().getRequestDispatcher(salida).forward(request, response);
 	}
 
-	private Cliente clienteDePeticion(HttpServletRequest request) {
-		Cliente cliente= new Cliente();
-		cliente.setNombre(request.getParameter("nombre"));
-		cliente.setApellido1(request.getParameter("apellido1"));
-		cliente.setApellido2(request.getParameter("apellido2"));
-		cliente.setProvincia(request.getParameter("provincia"));
-		cliente.setLocalidad(request.getParameter("localidad1"));
-		cliente.setDireccion(request.getParameter("direccion"));
-		cliente.setCodigoPostal(Integer.parseInt(request.getParameter("cp")));
-		cliente.setEmail(request.getParameter("email"));
-		cliente.setPassword(request.getParameter("password"));
+	private Articulo articuloDePeticion(HttpServletRequest request) {
+		Articulo articulo= new Articulo();
+		articulo.setCategoria(request.getParameter("categoria"));
+		articulo.setPrecio(Integer.parseInt(request.getParameter("precio")));
+		articulo.setDescripcion(request.getParameter("descripcion"));
+		articulo.setPath(request.getParameter("path"));
 
-		return cliente;
+		return articulo;
 	}
 
 }

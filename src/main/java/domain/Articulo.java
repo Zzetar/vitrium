@@ -4,10 +4,11 @@ import util.Validator;
 import exceptions.DomainException;
 
 public class Articulo {
-	private String codArt;
+	private int idArticulo;
+	private String categoria;
+	private int precio;
 	private String descripcion;
-	private Double precioMer;
-	private Familia familia;
+	private String path;
 	
 	
 	
@@ -16,22 +17,103 @@ public class Articulo {
 		
 	}
 	
+	
 
 
-	public  Articulo(String codArt, String descripcion, Double precioMer,
-			Familia familia) {
-		
-		this.codArt = codArt;
+	public int getIdArticulo() {
+		return idArticulo;
+	}
+
+
+
+
+	public void setIdArticulo(int idArticulo) {
+		this.idArticulo = idArticulo;
+	}
+
+
+
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+
+
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+
+
+
+	public int getPrecio() {
+		return precio;
+	}
+
+
+
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-		this.precioMer = precioMer;
-		this.familia = familia;
-		
 	}
 	
+	
+	
+	public String getPath() {
+		return path;
+	}
+
+
+
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Articulo [idArticulo=");
+		builder.append(idArticulo);
+		builder.append(", categoria=");
+		builder.append(categoria);
+		builder.append(", precio=");
+		builder.append(precio);
+		builder.append(", cantidad=");
+		builder.append(cantidad);
+		builder.append(", descripcion=");
+		builder.append(descripcion);
+		builder.append(", path=");
+		builder.append(path);
+		builder.append("]");
+		return builder.toString();
+	}
+
 
 	/**
 	 * @param codArt
 	 */
+	
+	/*
 	public Articulo(String codArt) {
 	
 		  this.codArt = codArt;
@@ -69,15 +151,15 @@ public Articulo(Articulo articulo) {
 	
 	
 	
-	/**
-	 * @return the codArt
-	 */
+	
+	  @return the codArt
+	 
 	public String getCodArt() {
 		return codArt;
 	}
-	/**
-	 * @param codArt the codArt to set
-	 */
+	
+	 @param codArt the codArt to set
+	
 	public void setCodArt(String codArt) {
 		if (Validator.length(codArt, 1, 10)) {
 			this.codArt = codArt.trim();
@@ -85,15 +167,15 @@ public Articulo(Articulo articulo) {
 			throw new DomainException("La longitud del codigo de articulo no es válida.");
 		}
 	}
-	/**
-	 * @return the descripcion
-	 */
+
+	 @return the descripcion
+	
 	public String getDescripcion() {
 		return descripcion;
 	}
-	/**
+	
 	 * @param descripcion the descripcion to set
-	 */
+	
 	public void setDescripcion(String descripcion) {
 		if (Validator.length(descripcion, 1, 50)) {
 			this.descripcion = descripcion.trim();
@@ -101,15 +183,15 @@ public Articulo(Articulo articulo) {
 			throw new DomainException("La longitud de la descripcion  del articulo no es válida.");
 		}
 	}
-	/**
+	
 	 * @return the preciMer
-	 */
+	
 	public Double getPreciMer() {
 		return precioMer;
 	}
-	/**
+	
 	 * @param preciMer the preciMer to set
-	 */
+	
 	public void setPrecioMer(Double precioMer) {
 		if (precioMer!=null){
 		     if(Validator.lengthDecimal(precioMer, 10,3))
@@ -120,15 +202,15 @@ public Articulo(Articulo articulo) {
 		}else
 			this.precioMer=precioMer;
 	}
-	/**
+	
 	 * @return the familia
-	 */
+	
 	public Familia getFamilia() {
 		return familia;
 	}
 	/**
 	 * @param familia the familia to set
-	 */
+	 
 	public void setFamilia(Familia familia) {
 		if (familia!=null)
 		this.familia = familia;
@@ -141,7 +223,7 @@ public Articulo(Articulo articulo) {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
-	 */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -159,7 +241,7 @@ public Articulo(Articulo articulo) {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -191,6 +273,6 @@ public Articulo(Articulo articulo) {
 			return false;
 		return true;
 	}
-	
+	*/
 	
 }

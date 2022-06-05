@@ -76,7 +76,7 @@ private static final String RecuperarTodosFamilia = "select cod_familia, descrip
 private static final String RecuperarAlmacen = "select cod_alm, descripcion,direccion,telf  from almacenes where cod_alm=?";
 private static final String RecuperarTodosAlmacen = "select cod_alm, descripcion,direccion,telf  from almacenes order by descripcion";
 //articulos
-private static final String InsertarArticulo = "insert into articulos( cod_art,descripcion,precio_mer,cod_fam)values (?,?,?,?)";
+private static final String InsertarArticulo = "insert into articulos(categoria, precio, descripcion, path)values (?,?,?,?)";
 private static final String getModificarArticulo = "update  articulos set descripcion=?,precio_mer=?,cod_fam=? where cod_art=?";
 private static final String BorrarArticulo ="delete from articulos where cod_art=?";
 private static final String RecuperarArticulo = "select cod_art,descripcion,precio_mer,cod_fam from articulos where cod_art=?";

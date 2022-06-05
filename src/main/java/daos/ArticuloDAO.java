@@ -1,12 +1,15 @@
 package daos;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
 
 import recursos.DbQuery;
 import recursos.Recursos;
@@ -17,11 +20,7 @@ import domain.Familia;
 import exceptions.DAOException;
 
 public class ArticuloDAO {
-	private static final String DB_ERR = "Error de la base de datos";
-
-	public static final int ORACLE_DUPLICATE_PK = 1;
-	private static final int ORACLE_DELETE_FK = 2292;
-	private static final int ORACLE_FALLO_FK = 2291;
+	
 	
 	private Connection con;
 
@@ -31,45 +30,34 @@ public class ArticuloDAO {
 	
 	public void insertarArticulo(Articulo articulo)throws  DAOException{
 		PreparedStatement st = null;
-		PreparedStatement sti = null;
 		
 		try {
-			st = con.prepareStatement(DbQuery.getInsertarArticulo());
-			st.setString(1, articulo.getCodArt());
-			st.setString(2, articulo.getDescripcion());
-			
-			if(articulo.getPreciMer()!=null) // OJO PUEDE SER NULO EN LA BASE DE DATOS
-				st.setDouble(3, articulo.getPreciMer());
-			else
-				st.setNull(3,  Types.DOUBLE);
-			
-			
-			st.setString(4, articulo.getFamilia().getCodFamilia());
-			
-			// rutina de verificacion de mas de una FK
-					  
-			
+			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
+			st.setString(1, articulo.getCategoria());
+			st.setInt(2, articulo.getPrecio());
+			st.setString(4, articulo.getDescripcion());
+			st.setString(5, articulo.getPath());
+					
 			
 			// ejecutamos el insert.			
 			st.executeUpdate();
+			ResultSet rs= st.getGeneratedKeys();
+			rs.next();
+			articulo.setIdArticulo(rs.getInt(1));
 		} catch (SQLException e) {
-			if (e.getErrorCode() == ORACLE_DUPLICATE_PK) {
-				throw new DAOException(" Articulo ya existe");
-			}else if (e.getErrorCode() ==ORACLE_FALLO_FK ){
-			   throw new DAOException("la familia  del articulo no existe");
+			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
+				throw new DAOException(" articulo ya existe");
 			} else {
-				throw new DAOException(DB_ERR, e);
+				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
 			}
 		} finally {
 			Recursos.closePreparedStatement(st);
-			Recursos.closePreparedStatement(sti);
 		}	
 	}
 	
 	
 	public int modificarArticulo(Articulo articulo)throws  DAOException{
 		PreparedStatement st = null;
-		PreparedStatement sti = null;
 		int modificado=0;
 		try {
 			st = con.prepareStatement(DbQuery.getModificarArticulo());
