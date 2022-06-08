@@ -93,6 +93,7 @@ public class Cliente implements Serializable {
 		if (provincia == null){
 			throw new DomainException("El codigo postal no es valido.");
 		}
+		this.provincia= provincia;
 	}
 
 

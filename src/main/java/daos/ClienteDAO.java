@@ -16,6 +16,7 @@ import domain.FormaPago;
 import domain.Iva;
 import domain.Tarifa;
 import exceptions.DAOException;
+import exceptions.DuplicateException;
 import recursos.DbQuery;
 import recursos.Recursos;
 
@@ -53,7 +54,7 @@ public class ClienteDAO implements IClienteDAO {
 			cliente.setIdCliente(rs.getInt(1));
 		} catch (SQLException e) {
 			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
-				throw new DAOException(" cliente ya existe");
+				throw new DuplicateException(" cliente ya existe");
 			} else {
 				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
 			}

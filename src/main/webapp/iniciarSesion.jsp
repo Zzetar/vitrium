@@ -209,7 +209,7 @@
 
         </form></p><br>
         
-        <form id="crear" action="crear-cuenta.html">
+        <form id="crear" action="Crear-cuenta.jsp">
             <div text align="center">
                 <h2>Aun no tienes cuenta en Vitrium</h2>
                 <h3><button type="submit" id="submit2" value="submit">Crea tu cuenta gratuita</button></h3>
