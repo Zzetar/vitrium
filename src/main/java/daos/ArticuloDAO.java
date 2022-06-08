@@ -144,18 +144,17 @@ public class ArticuloDAO implements ErroresBD {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		List<Articulo> list = new ArrayList<Articulo>();
-		Double percioMercado= null;
 		try {
 			st = con.prepareStatement(DbQuery.getRecuperarTodosArticulo());
 			rs = st.executeQuery();
 			while (rs.next()) {
-				percioMercado= null;
-				if(rs.getObject("precio_mer") !=null )
-					percioMercado=	new Double(rs.getDouble("percio_mer")); 
-				list.add(new Articulo(rs.getString(1),
-				                       rs.getString(2),
-				                       percioMercado,
-				                       new Familia(rs.getString(4))));
+				Articulo articulo= new Articulo();
+				articulo.setCategoria(rs.getString(1));
+				articulo.setPrecio(rs.getInt(2));
+				articulo.setDescripcion(rs.getString(3));
+				articulo.setPath(rs.getString(4));
+				
+				list.add(articulo);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(DB_ERR, e);
