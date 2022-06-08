@@ -31,7 +31,6 @@ public class FacturaDAO implements ErroresBD {
 			st.setInt(1, factura.getIdFactura());
 			st.setInt(2, factura.getIdPedido());
 			st.setInt(3, factura.getIdCliente());
-			st.setInt(4, factura.getIdLinea());
 			st.setInt(5, factura.getIdArticulo());
 
 			// ejecutamos el insert.			
