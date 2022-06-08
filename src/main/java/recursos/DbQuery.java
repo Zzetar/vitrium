@@ -114,7 +114,7 @@ private static final String RecuperarTodosLinPed = null;
 private static final String RecuperarTodosLinPedPedido = "select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=? order by cod_art";
 private static final String RecuperarLinPedBloqueo ="select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=?  order by cod_art for update";
 // pedido
-private static final String RecuperarPedido = "select n_ped,fecha_ped from pedidos  where n_ped= ?";
+private static final String RecuperarPedido = "select idCliente,estadoPedido, fechaPed from pedidos  where idPedido= ?";
 private static final String InsertarPedido = "insert into  pedidos (idCliente, estadoPedido ,fechaPed)values(?,?,?)";
 private static final String ModificarPedido = "update pedidos set Fecha_ped= ? where n_ped= ?";
 private static final String BorrarPedido = " delete from pedidos where n_ped=?";
