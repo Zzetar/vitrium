@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="domain.Cliente"%>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -156,7 +157,17 @@
                 }
                 return estaTodoOK;
             }
-    
+            <%
+            Cliente cliente=null;
+            if (session != null) {
+            	cliente= (Cliente) session.getAttribute("cliente");
+            }
+            
+            if (cliente == null || cliente.getClase() != 1) {
+    			request.setAttribute("mensaje", "No tiene permisos para acceder");
+            	getServletContext().getRequestDispatcher("/Fin").forward(request, response);
+            }
+            %>
         </script>
         
     </head>

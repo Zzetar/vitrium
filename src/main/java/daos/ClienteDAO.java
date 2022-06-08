@@ -226,6 +226,43 @@ CallableStatement st = null;
 		return borrado;
 		
 	}
+	
+
+	public Cliente recuperarClienteByEmail(String email) throws DAOException{
+		PreparedStatement st = null;
+		ResultSet rs =null ;
+		Cliente cliente=null;
+		
+			try {
+				st = con.prepareStatement(DbQuery.getRecuperarClienteByEmail());
+				st.setString(1, email);
+				rs=st.executeQuery();
+				if (rs.next()){
+					cliente= new Cliente();
+					//nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, contraseña, clase
+					cliente.setNombre(rs.getString(1));
+					cliente.setApellido1(rs.getString(2));
+					cliente.setApellido2(rs.getString(3));
+					cliente.setProvincia(rs.getString(4));
+					cliente.setLocalidad(rs.getString(5));
+					cliente.setDireccion(rs.getString(6));
+					cliente.setCodigoPostal(rs.getInt(7));
+					cliente.setPassword(rs.getString(8));
+					cliente.setClase(rs.getInt(9));
+				}		
+				
+			} catch (SQLException e) {
+				throw new DAOException(DB_ERR, e);
+			} finally {
+			Recursos.closeResultSet(rs);
+			Recursos.closePreparedStatement(st);
+			
+		}
+		
+		return cliente;
+			
+	}
+	
 	public Cliente recuperarCliente(Cliente cliente) throws DAOException{
 		PreparedStatement st = null;
 		ResultSet rs =null ;
@@ -260,7 +297,7 @@ CallableStatement st = null;
 		
 		return objeto;
 			
-		}
+	}
 		
 	
 	@Override

@@ -40,7 +40,7 @@
         <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
         <a href="contacto.html">Contacto</a>
         <%if (cliente == null) { %>
-        <a style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
+        <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
         <a style="float:right">Hola <%=cliente.getNombre() %></a>
         <%} %>
@@ -50,7 +50,7 @@
     
         
      <% if (cliente != null && cliente.getClase()>0) {  %>
-        	<form id="crear" action="añadirProducto.html">
+        	<form id="crear" action="añadirProducto.jsp">
             <div text align="center">
                 <h2>Insertar productos</h2>
                 <h3><button type="submit" id="submit2" value="submit">Inserta un producto nuevo</button></h3>
