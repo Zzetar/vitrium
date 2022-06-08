@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import daos.interfaces.ErroresBD;
 import recursos.DbQuery;
 import recursos.Recursos;
 import domain.Articulo;
@@ -19,7 +20,7 @@ import domain.Familia;
 
 import exceptions.DAOException;
 
-public class ArticuloDAO {
+public class ArticuloDAO implements ErroresBD {
 	
 	
 	private Connection con;
@@ -32,11 +33,11 @@ public class ArticuloDAO {
 		PreparedStatement st = null;
 		
 		try {
-			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
+			st = con.prepareStatement(DbQuery.getInsertarArticulo(), Statement.RETURN_GENERATED_KEYS);
 			st.setString(1, articulo.getCategoria());
 			st.setInt(2, articulo.getPrecio());
-			st.setString(4, articulo.getDescripcion());
-			st.setString(5, articulo.getPath());
+			st.setString(3, articulo.getDescripcion());
+			st.setString(4, articulo.getPath());
 					
 			
 			// ejecutamos el insert.			
