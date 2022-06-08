@@ -8,7 +8,6 @@ public class Pedido {
 
 	private int idPedido;
 	private int idCliente;
-	private int idLinea;
 	private String estadoPedido;
 	Date fechaPed;
 
@@ -30,14 +29,6 @@ public class Pedido {
 
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
-	}
-
-	public int getIdLinea() {
-		return idLinea;
-	}
-
-	public void setIdLinea(int idLinea) {
-		this.idLinea = idLinea;
 	}
 
 	public String getEstadoPedido() {
@@ -63,8 +54,6 @@ public class Pedido {
 		builder.append(idPedido);
 		builder.append(", idCliente=");
 		builder.append(idCliente);
-		builder.append(", idLinea=");
-		builder.append(idLinea);
 		builder.append(", estadoPedido=");
 		builder.append(estadoPedido);
 		builder.append(", fechaPed=");

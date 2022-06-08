@@ -30,9 +30,8 @@ public class PedidoDAO implements ErroresBD {
 		try {
 			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
 			st.setInt(1, pedido.getIdCliente());
-			st.setInt(2, pedido.getIdLinea());
-			st.setString(3, pedido.getEstadoPedido());
-			st.setDate(4, pedido.getFechaPed());
+			st.setString(2, pedido.getEstadoPedido());
+			st.setDate(3, pedido.getFechaPed());
 
 			// ejecutamos el insert.			
 			st.executeUpdate();
