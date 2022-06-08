@@ -48,7 +48,7 @@ public class ClienteServlet extends HttpServlet {
 			sCliente.insertarCliente(cliente);
 			request.getSession().setAttribute("cliente", cliente);
 			
-			salida="/ProductosDisponibles.jsp";
+			salida="/productosDisponibles.jsp";
 			request.setAttribute("info","Cliente dado de alta correctamente");
 			
 		} catch (ServiceException e) {
@@ -71,7 +71,6 @@ public class ClienteServlet extends HttpServlet {
 		cliente.setCodigoPostal(Integer.parseInt(request.getParameter("cp")));
 		cliente.setEmail(request.getParameter("email"));
 		cliente.setPassword(request.getParameter("password"));
-		cliente.setClase(Integer.parseInt(request.getParameter("clase")));
 
 		return cliente;
 	}
