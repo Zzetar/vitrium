@@ -80,7 +80,7 @@ private static final String InsertarArticulo = "insert into articulos(categoria,
 private static final String getModificarArticulo = "update  articulos set descripcion=?,precio_mer=?,cod_fam=? where cod_art=?";
 private static final String BorrarArticulo ="delete from articulos where cod_art=?";
 private static final String RecuperarArticulo = "select cod_art,descripcion,precio_mer,cod_fam from articulos where cod_art=?";
-private static final String RecuperarTodosArticulo = "select categoria,precio,descripcion,path from articulos order by idArticulo";
+private static final String RecuperarTodosArticulo = "select categoria,precio,descripcion,path,idArticulo from articulos order by idArticulo";
 // existencias
 private static final String InsertarExistencia = "insert into existencias ( cod_alm,cod_art,f_caducidad,stock_ini,Stock_teorico,pcmp) values(?,?,?,?,?,?)";
 private static final String ModificarExistencia = "update existencias set stock_ini=?,Stock_teorico=?,pcmp=? where cod_alm=? and cod_art=? and f_caducidad=?"  ;             

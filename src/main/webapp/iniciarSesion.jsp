@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="domain.Carrito"%>
 <%@page import="domain.Cliente"%>
 <html lang="en">
 <head>
@@ -151,7 +152,9 @@
         return estaTodoOK;
         }
         <%
+        Carrito carrito= (Carrito) session.getAttribute("carrito");
         session.invalidate();
+        request.getSession().setAttribute("carrito", carrito);
         String mensajeInfo= (String) request.getAttribute("error");
     	if (mensajeInfo != null) {
     		%>alert("<%=mensajeInfo%>");<%
