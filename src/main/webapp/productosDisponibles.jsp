@@ -115,5 +115,8 @@
        		<input type="hidden" name="precio" id="precio" >
        		<input type="hidden" name="cantidad" id="cantidad" >
        </form>
+        <%if (cliente != null && carrito != null) { %>
+        	<button onclick="location.href='validarTarjeta.html'" id="comprar">Comprar</button>
+        <%} %>
 </body>
 </html>
