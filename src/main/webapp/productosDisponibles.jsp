@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="servicios.ServicioArticulo"%>
 <%@page import="domain.Articulo"%>
 <%@page import="domain.Cliente"%>
 <html lang="en">
@@ -9,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="Css/Estilos.css">
     <script language="javascript" type="text/javascript" src="Script/Validar.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
 
     <title>Productos disponibles</title>
@@ -23,6 +26,9 @@
     	if (mensajeInfo != null) {
     		%>alert("<%=mensajeInfo%>");<%
     	}
+    	
+    	ServicioArticulo servicioArticulo= new ServicioArticulo();
+    	List<Articulo> articulos= servicioArticulo.recuperarTodosArticulo();
         %>
 
     </script>
@@ -54,30 +60,22 @@
       <%  }  %>
        
        
-       <% for(int i=0;i<articulo.List;i++){ %>
+       <% for(int i=0;i<articulos.size();i++){ %>
     	   
        
        <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3" style="padding-left:0">
-                    <div class="form-group">
-                    	<%  articulo.List(i).get.path();  %>
-                    </div>
-                </div>
-                <div class="col-sm-3" style="padding-left:0">
-                    <div class="form-group">
-                    	<%  articulo.List(i).get.categoria();  %>
-                    </div>
+                <div class="col-sm-3">
+                         <img src="articulo/imagen?fichero=<%= articulos.get(i).getPath()  %>" height="100px" width="100px"> 
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-group">
-                         <%  articulo.List(i).get.precio();  %>
-                    </div>
+                    	<%=  articulos.get(i).getCategoria()  %>
                 </div>
-                <div class="col-sm-3" style="padding-right:0">
-                    <div class="form-group">
-                         <%  articulo.List(i).get.descripcion();  %>
-                    </div>
+                <div class="col-sm-3">
+                         <%=  articulos.get(i).getPrecio()  %>
+                </div>
+                <div class="col-sm-3">
+                         <%=  articulos.get(i).getDescripcion()  %>
                 </div>
             </div>
         </div>

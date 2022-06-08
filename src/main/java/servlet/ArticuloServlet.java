@@ -26,7 +26,7 @@ maxFileSize = 1024 * 1024 * 5,
 maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ArticuloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int BUFFER_SIZE = 1024;
+	private static final int BUFFER_SIZE = 1024*10;
        
     /**
      * @see HttpServlet#HttpServlet()
