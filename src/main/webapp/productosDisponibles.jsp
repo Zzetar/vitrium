@@ -50,7 +50,7 @@
     
         
      <% if (cliente != null && cliente.getClase()>0) {  %>
-        	<form id="crear" action="añadirProducto.html">
+        	<form id="crear" action="añadirProducto.jsp">
             <div text align="center">
                 <h2>Insertar productos</h2>
                 <h3><button type="submit" id="submit2" value="submit">Inserta un producto nuevo</button></h3>
