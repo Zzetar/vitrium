@@ -91,7 +91,7 @@ private static final String RecuperarTodosExistencia = "select cod_alm,cod_art,f
 private static final String ModificarContadorFact = "update contador_fact set numero=numero+1";
 private static final String RecuperarContadorFact = " select numero from contador_fact";
 // factura
-private static final String InsertarFactura ="insert into facturas ( idPedido, idCliente, idLinea, ideArticulo) values(?,?,?,?)";
+private static final String InsertarFactura ="insert into facturas ( idPedido, idCliente, idArticulo) values(?,?,?)";
 private static final String BorrarFactura = null;
 private static final String RecuperarFactura = "select num_factura,fecha_fact, importe,cod_pro from facturas where num_factura=? " ;
 private static final String RecuperarTodosFactura = "select num_factura,fecha_fact, importe,cod_pro from facturas " ;
@@ -115,7 +115,7 @@ private static final String RecuperarTodosLinPedPedido = "select n_ped,cod_art,c
 private static final String RecuperarLinPedBloqueo ="select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=?  order by cod_art for update";
 // pedido
 private static final String RecuperarPedido = "select n_ped,fecha_ped from pedidos  where n_ped= ?";
-private static final String InsertarPedido = "insert into  pedidos (idCliente, idLinea, estadoPedido ,fechaPed)values(?,?,?,?)";
+private static final String InsertarPedido = "insert into  pedidos (idCliente, estadoPedido ,fechaPed)values(?,?,?)";
 private static final String ModificarPedido = "update pedidos set Fecha_ped= ? where n_ped= ?";
 private static final String BorrarPedido = " delete from pedidos where n_ped=?";
 private static final String RecuperarTodosPedido = "select n_ped,fecha_ped from pedidos ";

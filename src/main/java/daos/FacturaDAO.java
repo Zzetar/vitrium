@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.interfaces.ErroresBD;
 import recursos.DbQuery;
 import recursos.Recursos;
 import domain.Factura;
 import domain.Proveedor;
 import exceptions.DAOException;
 
-public class FacturaDAO {
+public class FacturaDAO implements ErroresBD {
 	
 	private Connection con;
 
@@ -30,8 +31,7 @@ public class FacturaDAO {
 			st.setInt(1, factura.getIdFactura());
 			st.setInt(2, factura.getIdPedido());
 			st.setInt(3, factura.getIdCliente());
-			st.setInt(4, factura.getIdLinea());
-			st.setInt(5, factura.getIdArticulo());
+			st.setInt(4, factura.getIdArticulo());
 
 			// ejecutamos el insert.			
 			st.executeUpdate();

@@ -9,12 +9,13 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import daos.interfaces.ErroresBD;
 import domain.Pedido;
 import exceptions.DAOException;
 import recursos.DbQuery;
 import recursos.Recursos;
 
-public class PedidoDAO {
+public class PedidoDAO implements ErroresBD {
 	
 	private Connection con;
 
@@ -29,9 +30,8 @@ public class PedidoDAO {
 		try {
 			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
 			st.setInt(1, pedido.getIdCliente());
-			st.setInt(2, pedido.getIdLinea());
-			st.setString(3, pedido.getEstadoPedido());
-			st.setDate(4, pedido.getFechaPed());
+			st.setString(2, pedido.getEstadoPedido());
+			st.setDate(3, pedido.getFechaPed());
 
 			// ejecutamos el insert.			
 			st.executeUpdate();

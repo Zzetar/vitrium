@@ -12,7 +12,6 @@ import exceptions.DomainException;
 	private int idFactura;
 	private int idPedido;
 	private int idCliente;
-	private int idLinea;
 	private int idArticulo;
 	
 
@@ -67,20 +66,6 @@ public void setIdCliente(int idCliente) {
 
 
 
-public int getIdLinea() {
-	return idLinea;
-}
-
-
-
-
-public void setIdLinea(int idLinea) {
-	this.idLinea = idLinea;
-}
-
-
-
-
 public int getIdArticulo() {
 	return idArticulo;
 }
@@ -104,8 +89,6 @@ public String toString() {
 	builder.append(idPedido);
 	builder.append(", idCliente=");
 	builder.append(idCliente);
-	builder.append(", idLinea=");
-	builder.append(idLinea);
 	builder.append(", idArticulo=");
 	builder.append(idArticulo);
 	builder.append("]");
