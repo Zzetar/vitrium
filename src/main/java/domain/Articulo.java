@@ -98,8 +98,6 @@ public class Articulo {
 		builder.append(categoria);
 		builder.append(", precio=");
 		builder.append(precio);
-		builder.append(", cantidad=");
-		builder.append(cantidad);
 		builder.append(", descripcion=");
 		builder.append(descripcion);
 		builder.append(", path=");

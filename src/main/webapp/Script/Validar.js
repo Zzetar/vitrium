@@ -141,7 +141,6 @@ function validarISBNInside(elemento,min,max,capaError,errorISBN) {
 function codigoProvincia(cp) {
 	if (cp == 01) {
 		document.getElementById("provincia").innerHTML = "Álava";
-
 	}
 
 	if (cp == 02) {

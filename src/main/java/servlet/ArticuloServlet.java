@@ -17,7 +17,7 @@ import servicios.ServicioCliente;
 /**
  * Servlet implementation class OperacionesCliente
  */
-@WebServlet("/cliente")
+@WebServlet("/Articulo")
 public class ArticuloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

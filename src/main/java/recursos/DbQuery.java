@@ -23,7 +23,7 @@ public class DbQuery {
 			
 
 		// clientes
-	private static final String InsertarCliente = "insert into clientes(nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, email, contraseña) values (?,?,?,?,?,?,?,?,?)";
+	private static final String InsertarCliente = "insert into clientes(nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, email, contraseña, clase) values (?,?,?,?,?,?,?,?,?,?)";
 	private static final String ModificarCliente = "update clientes set razon_social=?,telf=?,direccion=?,oferta=?,"
 	+ "alb_fact=?,cod_iva=?,cod_tarifa=?,forma_pago=? where cod_cli=?";
 
@@ -80,7 +80,7 @@ private static final String InsertarArticulo = "insert into articulos(categoria,
 private static final String getModificarArticulo = "update  articulos set descripcion=?,precio_mer=?,cod_fam=? where cod_art=?";
 private static final String BorrarArticulo ="delete from articulos where cod_art=?";
 private static final String RecuperarArticulo = "select cod_art,descripcion,precio_mer,cod_fam from articulos where cod_art=?";
-private static final String RecuperarTodosArticulo = "select cod_art,descripcion,precio_mer,cod_fam from articulos order by descripcion";
+private static final String RecuperarTodosArticulo = "select categoria,precio,descripcion,path from articulos order by idArticulo";
 // existencias
 private static final String InsertarExistencia = "insert into existencias ( cod_alm,cod_art,f_caducidad,stock_ini,Stock_teorico,pcmp) values(?,?,?,?,?,?)";
 private static final String ModificarExistencia = "update existencias set stock_ini=?,Stock_teorico=?,pcmp=? where cod_alm=? and cod_art=? and f_caducidad=?"  ;             
@@ -91,7 +91,7 @@ private static final String RecuperarTodosExistencia = "select cod_alm,cod_art,f
 private static final String ModificarContadorFact = "update contador_fact set numero=numero+1";
 private static final String RecuperarContadorFact = " select numero from contador_fact";
 // factura
-private static final String InsertarFactura ="insert into facturas ( num_factura,fecha_fact,importe,cod_pro) values(?,?,?,?)";
+private static final String InsertarFactura ="insert into facturas ( idPedido, idCliente, idLinea, ideArticulo) values(?,?,?,?)";
 private static final String BorrarFactura = null;
 private static final String RecuperarFactura = "select num_factura,fecha_fact, importe,cod_pro from facturas where num_factura=? " ;
 private static final String RecuperarTodosFactura = "select num_factura,fecha_fact, importe,cod_pro from facturas " ;
@@ -105,7 +105,7 @@ private static final String RecuperarTodosRecibo = null;
 private static final String RecuperarTodosReciboFactura = null;
 private static final String RecuperarTodosReciboProvedor = "select num_factura,numero,fecha_vto,importe from recibos where num_factura in (select num_factura from facturas where cod_pro=?)";
 // lin PED
-private static final String InsertarLinPed = "insert into  lin_ped(n_ped,cod_art,cantidad,cantidad_serv)values(?,?,?,?)";
+private static final String InsertarLinPed = "insert into  lin_ped(idPedido, idArticulo, cantidad, gastosEnvio, precioFinal)values(?,?,?,?,?)";
 private static final String ModificarLinPed = null;  
 private static final String BorrarLinPed = null;
 private static final String BorrarTodosLinPedPedido = "delete from lin_ped where n_ped=?";
@@ -115,7 +115,7 @@ private static final String RecuperarTodosLinPedPedido = "select n_ped,cod_art,c
 private static final String RecuperarLinPedBloqueo ="select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=?  order by cod_art for update";
 // pedido
 private static final String RecuperarPedido = "select n_ped,fecha_ped from pedidos  where n_ped= ?";
-private static final String InsertarPedido = "insert into  pedidos (n_ped,Fecha_ped)values(?,?)";
+private static final String InsertarPedido = "insert into  pedidos (idCliente, idLinea, estadoPedido ,fechaPed)values(?,?,?,?)";
 private static final String ModificarPedido = "update pedidos set Fecha_ped= ? where n_ped= ?";
 private static final String BorrarPedido = " delete from pedidos where n_ped=?";
 private static final String RecuperarTodosPedido = "select n_ped,fecha_ped from pedidos ";

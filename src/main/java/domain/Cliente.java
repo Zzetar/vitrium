@@ -15,6 +15,7 @@ public class Cliente {
 	private  String direccion;
 	private  String email;
 	private  String password;
+	private  int clase;
 	
 	
 	public Cliente(){
@@ -120,6 +121,15 @@ public class Cliente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public int getClase() {
+		return clase;
+	}
+
+
+	public void setClase(int clase) {
+		this.clase = clase;
+	}
 
 
 	@Override
@@ -145,6 +155,8 @@ public class Cliente {
 		builder.append(email);
 		builder.append(", password=");
 		builder.append(password);
+		builder.append(", clase=");
+		builder.append(clase);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -152,6 +164,17 @@ public class Cliente {
 	/**
 	 * @param codcli
 	 */
+	
+	public String getprovincia() {
+		return provincia;
+	}
+	
+	public void setProvincia1(String provincia) {
+		if (provincia == null){
+			throw new DomainException("El codigo postal no es valido.");
+		}
+	}
+	
 
 	/*public String getCodCli() {
 		return codcli;

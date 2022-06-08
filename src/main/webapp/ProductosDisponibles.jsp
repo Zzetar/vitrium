@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="domain.Articulo"%>
 <%@page import="domain.Cliente"%>
 <html lang="en">
 <head>
@@ -29,16 +30,59 @@
 <body>
 
     <div class="topnav">
-        <a href="Index.html">Inicio</a>
-        <a class="active" href="ProductosDisponibles.html">Productos disponibles</a>
-        <a href="ProductosEncargo.html">Productos por encargo</a>
-        <a href="Contacto.html">Contacto</a>
+        <a href="index.html">Inicio</a>
+        <a class="active" href="productosDisponibles.html">Productos disponibles</a>
+        <a href="contacto.html">Contacto</a>
         <%if (cliente == null) { %>
-        <a style="float:right" href="IniciarSesion.html">Iniciar sesion</a>
+        <a style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
         <%} else { %>
         <a style="float:right">Hola <%=cliente.getNombre() %></a>
         <%} %>
     </div> 
+     
+     
     
+        
+     <% if (cliente.getClase()>0) {  %>
+        	<form id="crear" action="añadirProducto.html">
+            <div text align="center">
+                <h2>Insertar productos</h2>
+                <h3><button type="submit" id="submit2" value="submit">Inserta un producto nuevo</button></h3>
+                
+            </div>
+        </form>
+      <%  }  %>
+       
+       <% for(int i=0;i<articulo.List;i++){ %>
+    	   
+       
+       <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3" style="padding-left:0">
+                    <div class="form-group">
+                    	<%  articulo.List(i).get.path();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="padding-left:0">
+                    <div class="form-group">
+                    	<%  articulo.List(i).get.categoria();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                         <%  articulo.List(i).get.precio();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="padding-right:0">
+                    <div class="form-group">
+                         <%  articulo.List(i).get.descripcion();  %>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <% }) %>
+       
+       
 </body>
 </html>

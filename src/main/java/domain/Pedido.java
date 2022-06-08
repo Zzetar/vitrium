@@ -6,13 +6,80 @@ import exceptions.DomainException;
 
 public class Pedido {
 
-	private int nPed;
+	private int idPedido;
+	private int idCliente;
+	private int idLinea;
+	private String estadoPedido;
 	Date fechaPed;
 
 	public Pedido() {
 
 	}
 
+	public int getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public int getIdLinea() {
+		return idLinea;
+	}
+
+	public void setIdLinea(int idLinea) {
+		this.idLinea = idLinea;
+	}
+
+	public String getEstadoPedido() {
+		return estadoPedido;
+	}
+
+	public void setEstadoPedido(String estadoPedido) {
+		this.estadoPedido = estadoPedido;
+	}
+
+	public Date getFechaPed() {
+		return fechaPed;
+	}
+
+	public void setFechaPed(Date fechaPed) {
+		this.fechaPed = fechaPed;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido [idPedido=");
+		builder.append(idPedido);
+		builder.append(", idCliente=");
+		builder.append(idCliente);
+		builder.append(", idLinea=");
+		builder.append(idLinea);
+		builder.append(", estadoPedido=");
+		builder.append(estadoPedido);
+		builder.append(", fechaPed=");
+		builder.append(fechaPed);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+	
+	
+	
+
+	
+	/*
 	public Pedido(int nPed, Date fechaPed) {
 
 		this.nPed = nPed;
@@ -57,7 +124,7 @@ public class Pedido {
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#hashCode()
-	 */
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,7 +137,7 @@ public class Pedido {
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,5 +151,6 @@ public class Pedido {
 			return false;
 		return true;
 	}
+	*/
 
 }

@@ -155,11 +155,10 @@
 <body id="body">
 
     <div class="topnav">
-        <a href="Index.html">Inicio</a>
-        <a href="ProductosDisponibles.html">Productos disponibles</a>
-        <a href="ProductosEncargo.html">Productos por encargo</a>
-        <a href="Contacto.html">Contacto</a>
-        <a class="active" style="float:right" href="IniciarSesion.html">Iniciar sesion</a>
+        <a href="index.html">Inicio</a>
+        <a href="productosDisponibles.html">Productos disponibles</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="active" style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
     </div> 
 
     <div>
@@ -169,12 +168,12 @@
                 <h2>Inicia Sesion en Vitrium</h2><br>
                 </div>
                 <div class="form-group">
-                    Inserte su nombre de usuario
+                    Añada su Email
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="Usuario" name="usuario" type="text" required class="form-control" placeholder="Usuario" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,15,errorUsuario);" maxlength="15">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">
                     </div>
-                    <p class="obligatorio" id="errorUsuario">El Usuario debe de ser obligatorio y tener entre 2 y 15 caracteres</p>
+                    <p class="obligatorio" id="errorEmail">El formato del email no es correcto.</p>
                 </div>
 
                 
@@ -198,7 +197,7 @@
 
         </form></p><br>
         
-        <form id="crear" action="Crear-cuenta.html">
+        <form id="crear" action="crear-cuenta.html">
             <div text align="center">
                 <h2>Aun no tienes cuenta en Vitrium</h2>
                 <h3><button type="submit" id="submit2" value="submit">Crea tu cuenta gratuita</button></h3>

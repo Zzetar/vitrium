@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import domain.Articulo;
 
 
@@ -18,11 +20,6 @@ import recursos.Recursos;
 import exceptions.DAOException;
 
 public class LinPedDAO {
-	private static final String DB_ERR = "Error de la base de datos";
-
-	private static final int ORACLE_DUPLICATE_PK = 1;
-	private static final int ORACLE_DELETE_FK = 2292;
-	private static final int ORACLE_FALLO_FK = 2291;
 	
 	private Connection con;
 
@@ -32,12 +29,35 @@ public class LinPedDAO {
 	
 	public void insertarLinPed(LinPed linped) throws DAOException {
 		PreparedStatement st = null;
-		PreparedStatement stAux = null;
-		ResultSet rs = null;
 		
 		try {
-			st = con.prepareStatement(DbQuery.getInsertarLinPed());
-			st.setInt(1, linped.getPedido().getnPed());
+			st = con.prepareStatement(DbQuery.getInsertarLinPed(), Statement.RETURN_GENERATED_KEYS);
+			st.setInt(1, linped.getIdLinea());
+			st.setInt(2, linped.getIdArticulo());
+			st.setInt(3, linped.getCantidad());
+			st.setInt(4, linped.getGastosEnvio());
+			st.setInt(5, linped.getPrecioFinal());
+
+			// ejecutamos el insert.			
+			st.executeUpdate();
+			ResultSet rs= st.getGeneratedKeys();
+			rs.next();
+			linped.setIdLinea(rs.getInt(1));
+		} catch (SQLException e) {
+			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
+				throw new DAOException(" Linea de pedido ya existe");
+			} else {
+				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
+			}
+		} finally {
+			Recursos.closePreparedStatement(st);
+		}	
+	}
+			
+			
+			
+			
+			/*st.setInt(1, linped.getPedido().getnPed());
 			st.setString(2, linped.getArticulo().getCodArt());
 			st.setDouble(3, linped.getCantidad());
 			if (linped.getCantidadServ()==null)
@@ -82,7 +102,7 @@ public class LinPedDAO {
 			Recursos.closePreparedStatement(st);
 			Recursos.closeResultSet(rs);
 		}
-	}
+	}*/
 	
 	public int modificarLinPed(LinPed linped) throws DAOException {
 		PreparedStatement st = null;

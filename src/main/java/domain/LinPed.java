@@ -4,17 +4,116 @@ import exceptions.DomainException;
 import util.Validator;
 
 public class LinPed {
-	private Pedido pedido; 
-	private Articulo articulo; 
-	private double cantidad; 
-	private Double cantidadServ=null ; 
+	private int idLinea;
+	//private Articulo articulo;
+	private int idArticulo; 
+	private int cantidad; 
+	private int gastosEnvio; 
+	private int precioFinal;
 	
 
 
 
 	public LinPed() {
 	}
+
+
+
+
+	public int getIdLinea() {
+		return idLinea;
+	}
+
+
+
+
+	public void setIdLinea(int idLinea) {
+		this.idLinea = idLinea;
+	}
+
+
+
+
+	public int getIdArticulo() {
+		return idArticulo;
+	}
+
+
+
+
+	public void setIdArticulo(int idArticulo) {
+		this.idArticulo = idArticulo;
+	}
+
+
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+
+
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
+
+
+	public int getGastosEnvio() {
+		return gastosEnvio;
+	}
+
+
+
+
+	public void setGastosEnvio(int gastosEnvio) {
+		this.gastosEnvio = gastosEnvio;
+	}
+
+
+
+
+	public int getPrecioFinal() {
+		return precioFinal;
+	}
+
+
+
+
+	public void setPrecioFinal(int precioFinal) {
+		this.precioFinal = precioFinal;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("LinPed [idLinea=");
+		builder.append(idLinea);
+		builder.append(", idArticulo=");
+		builder.append(idArticulo);
+		builder.append(", cantidad=");
+		builder.append(cantidad);
+		builder.append(", gastosEnvio=");
+		builder.append(gastosEnvio);
+		builder.append(", precioFinal=");
+		builder.append(precioFinal);
+		builder.append("]");
+		return builder.toString();
+	}
 	
+	
+	
+	
+	
+	
+	
+	/*
 	public LinPed(Pedido pedido, Articulo articulo) {
 		
 		this.pedido = pedido;
@@ -107,7 +206,7 @@ public class LinPed {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
-	 */
+	 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,7 +224,7 @@ public class LinPed {
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+	 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -156,6 +255,6 @@ public class LinPed {
 		return true;
 	}
 
-	
+	*/
 	
 }

@@ -71,6 +71,7 @@ public class ClienteServlet extends HttpServlet {
 		cliente.setCodigoPostal(Integer.parseInt(request.getParameter("cp")));
 		cliente.setEmail(request.getParameter("email"));
 		cliente.setPassword(request.getParameter("password"));
+		cliente.setClase(Integer.parseInt(request.getParameter("clase")));
 
 		return cliente;
 	}

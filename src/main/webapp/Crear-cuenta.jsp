@@ -177,17 +177,6 @@
                 mensaje += "El Segundo apellido debe de tener entre 0 y 100 caracteres \n";
                 estaTodoOK = false;
             }
-            
-
-            if (esBlanco(Usuario)) {
-                mensaje += "Usuario es obligatorio \n";
-                estaTodoOK = false;
-            } else {
-                if (!validarString(Usuario.value, 2, 15)) {    /////si queremos poner longitud sera sin ".value"/////
-                    mensaje += "El usuario debe de tener entre 2 y 15 caracteres y al menos una letra \n";
-                    estaTodoOK = false;
-                }
-            }
 
             if (esBlanco(email)) {
                 mensaje += "El email es obligatorio \n";
@@ -265,7 +254,6 @@
                 + ".\nlocalidad1: " + localidad1.value 
                 + ".\nProvincia: " +provincia.innerText
                 + ".\nDireccion: "+ Direccion.value
-                + ".\nUsuario: "+ Usuario.value
                 + ".\nEmail: " + email.value 
                 + ".\nContraseña: " + Password.value);
                 
@@ -288,11 +276,10 @@
 
 <body>
     <div class="topnav">
-        <a href="Index.html">Inicio</a>
-        <a href="ProductosDisponibles.html">Productos disponibles</a>
-        <a href="ProductosEncargo.html">Productos por encargo</a>
-        <a href="Contacto.html">Contacto</a>
-        <a class="active" style="float:right" href="IniciarSesion.html">Iniciar sesion</a>
+        <a href="index.html">Inicio</a>
+        <a href="productosDisponibles.html">Productos disponibles</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="active" style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
     </div> 
 
     <form id="formulario2" onsubmit="return validar()" action="cliente" method="post" >
@@ -335,7 +322,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="padding-left:0">
                     <div class="form-group">
                         Codigo Postal
                         <div class="input-group">
@@ -355,7 +342,7 @@
                         <p class="obligatorio" id="errorLocalidad1">La localidad es obligatoria debe tener 1-20 caracteres</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="padding-right:0">
                     <div class="form-group">
                         Provincia
                         <div class="input-group">
@@ -371,7 +358,7 @@
         <div class="form-group">
             Añada su direccion
             <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                 <input id="Direccion" name="direccion" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
             </div>
             <p class="obligatorio" id="errorDireccion">La direccion debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
@@ -385,16 +372,6 @@
                 <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">
             </div>
             <p class="obligatorio" id="errorEmail">El formato del email no es correcto.</p>
-        </div>
-
-        <div class="form-group">
-            Añada su nombre de usuario
-            <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="Usuario" name="usuario" type="text" required class="form-control" placeholder="Usuario" onfocus="entraFoco(this)" onblur="saleFoco(this);" onkeyup=" validarUsuarioInside(this,2,15,errorUsuario,existeUsuario);" maxlength="15">
-            </div>
-            <p class="obligatorio" id="errorUsuario">El Usuario debe de ser obligatorio y tener entre 2 y 15 caracteres</p>
-            <p class="obligatorio" id="existeUsuario">El usuario ya existe </p>
         </div>
 
         <div class="form-group">

@@ -19,6 +19,8 @@ import exceptions.DAOException;
 import recursos.DbQuery;
 import recursos.Recursos;
 
+
+
 public class ClienteDAO implements IClienteDAO {
 	
 	
@@ -41,6 +43,7 @@ public class ClienteDAO implements IClienteDAO {
 			st.setInt(7, cliente.getCodigoPostal());
 			st.setString(8, cliente.getEmail());
 			st.setString(9, cliente.getPassword());
+			st.setInt(10, cliente.getClase());
 			
 					 
 			// ejecutamos el insert.			

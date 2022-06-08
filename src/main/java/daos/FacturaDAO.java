@@ -1,6 +1,7 @@
 package daos;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,11 +15,6 @@ import domain.Proveedor;
 import exceptions.DAOException;
 
 public class FacturaDAO {
-	private static final String DB_ERR = "Error de la base de datos";
-
-	public static final int ORACLE_DUPLICATE_PK = 1;
-	private static final int ORACLE_DELETE_FK = 2292;
-	private static final int ORACLE_FALLO_FK = 2291;
 	
 	private Connection con;
 
@@ -28,36 +24,31 @@ public class FacturaDAO {
 	
 	public void insertarFactura(Factura factura)throws  DAOException{
 		PreparedStatement st = null;
-		PreparedStatement sti = null;
 		
 		try {
 			st = con.prepareStatement(DbQuery.getInsertarFactura());
-			st.setInt   (1, factura.getNumFactura());
-			st.setDate(2, factura.getFFactura());
-			st.setDouble(3, (Double)factura.getImporte());
-			st.setString(4, factura.getProveedor().getCodPro());
-			
-			// rutina de verificacion de mas de una FK
-			
-			
-			
-			
+			st.setInt(1, factura.getIdFactura());
+			st.setInt(2, factura.getIdPedido());
+			st.setInt(3, factura.getIdCliente());
+			st.setInt(4, factura.getIdLinea());
+			st.setInt(5, factura.getIdArticulo());
+
 			// ejecutamos el insert.			
 			st.executeUpdate();
+			ResultSet rs= st.getGeneratedKeys();
+			rs.next();
+			factura.setIdFactura(rs.getInt(1));
 		} catch (SQLException e) {
-			if (e.getErrorCode() == ORACLE_DUPLICATE_PK) {
-				throw new DAOException(" Factura ya existe");
-			}else if (e.getErrorCode() ==ORACLE_FALLO_FK ){
-			   throw new DAOException("El proveedor de la factura no existe");
+			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
+				throw new DAOException(" factura ya existe");
 			} else {
-				throw new DAOException(DB_ERR, e);
+				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
 			}
 		} finally {
 			Recursos.closePreparedStatement(st);
-			Recursos.closePreparedStatement(sti);
 		}	
 	}
-	
+
 	
 	
 	

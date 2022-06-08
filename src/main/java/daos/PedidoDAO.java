@@ -7,17 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import domain.Pedido;
 import exceptions.DAOException;
 import recursos.DbQuery;
 import recursos.Recursos;
 
 public class PedidoDAO {
-	private static final String DB_ERR = "Error de la base de datos";
-
-	private static final int ORACLE_DUPLICATE_PK = 1;
-	private static final int ORACLE_DELETE_FK = 2292;
-	private static final int ORACLE_FALLO_FK = 2291;
 	
 	private Connection con;
 
@@ -27,35 +24,29 @@ public class PedidoDAO {
 	
 	public void insertarPedido(Pedido pedido) throws DAOException {
 		PreparedStatement st = null;
-		PreparedStatement stAux = null;
-		ResultSet rs = null;
-		int nped;
+		
 		
 		try {
-			st = con.prepareStatement(DbQuery.getInsertarPedido());
-			// alternativa a random utilizar una sequencia de bd en oracle.
-			nped=Recursos.randomEntero(9);
-			st.setInt(1,nped );
-			st.setDate(2, pedido.getFechaPed());
-			
-			pedido.setnPed(nped);
+			st = con.prepareStatement(DbQuery.getInsertarCliente(), Statement.RETURN_GENERATED_KEYS);
+			st.setInt(1, pedido.getIdCliente());
+			st.setInt(2, pedido.getIdLinea());
+			st.setString(3, pedido.getEstadoPedido());
+			st.setDate(4, pedido.getFechaPed());
+
+			// ejecutamos el insert.			
 			st.executeUpdate();
-			
-			
+			ResultSet rs= st.getGeneratedKeys();
+			rs.next();
+			pedido.setIdPedido(rs.getInt(1));
+
 		} catch (SQLException e) {
-			if (e.getErrorCode() == ORACLE_DUPLICATE_PK){
-			insertarPedido( pedido);
-					
+			if (e.getErrorCode() == MYSQL_DUPLICATE_PK) { //TODO: CAmbiar
+				throw new DAOException(" pedido ya existe");
+			} else {
+				throw new DAOException(DB_ERR + ": " + e.getMessage(), e);
 			}
-							
-			else if (e.getErrorCode() ==ORACLE_FALLO_FK )
-					throw new DAOException("El proveedor del pedido no existe");
-				else
-					throw new DAOException(DB_ERR, e);
 		} finally {
-			Recursos.closePreparedStatement(stAux);
 			Recursos.closePreparedStatement(st);
-			Recursos.closeResultSet(rs);
 		}
 		
 		
