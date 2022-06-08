@@ -42,7 +42,7 @@ public class Fin extends HttpServlet {
 		
 		out.println("<html>");
 		out.println("<h1>"+request.getAttribute("mensaje")+"   </h1>" );
-		out.println("<button type='button'> <a href='Menu.html'>Menu</a> </button>");//dentro del servlet si hace falta ponerle en enlace completo con .html si es un servlet no
+		out.println("<button type='button'> <a href='.'>Inicio</a> </button>");//dentro del servlet si hace falta ponerle en enlace completo con .html si es un servlet no
 
 		out.println("</html>");
 	}
