@@ -153,6 +153,7 @@ public class ArticuloDAO implements ErroresBD {
 				articulo.setPrecio(rs.getInt(2));
 				articulo.setDescripcion(rs.getString(3));
 				articulo.setPath(rs.getString(4));
+				articulo.setIdArticulo(rs.getInt(5));
 				
 				list.add(articulo);
 			}

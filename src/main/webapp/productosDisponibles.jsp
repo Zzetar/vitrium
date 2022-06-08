@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="domain.LinPed"%>
+<%@page import="domain.Carrito"%>
 <%@page import="java.util.List"%>
 <%@page import="servicios.ServicioArticulo"%>
 <%@page import="domain.Articulo"%>
@@ -17,10 +19,18 @@
     <title>Productos disponibles</title>
 
     <script>
+    	function cambiarLinea (idArticulo, precio, cantidad) {
+    		document.getElementById("idArticulo").value=idArticulo;
+    		document.getElementById("precio").value=precio;
+    		document.getElementById("cantidad").value=cantidad;
+    		document.getElementById("hiddenForm").submit();
+    	}
         <%
         Cliente cliente=null;
+        Carrito carrito=null;
         if (session != null) {
         	cliente= (Cliente) session.getAttribute("cliente");
+        	carrito= (Carrito) session.getAttribute("carrito");
         }
         String mensajeInfo= (String) request.getAttribute("info");
     	if (mensajeInfo != null) {
@@ -65,22 +75,45 @@
        
        <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                          <img src="articulo/imagen?fichero=<%= articulos.get(i).getPath()  %>" height="100px" width="100px"> 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     	<%=  articulos.get(i).getCategoria()  %>
                 </div>
-                <div class="col-sm-3">
-                         <%=  articulos.get(i).getPrecio()  %>
+                <div class="col-sm-2">
+                         <%=  articulos.get(i).getPrecio()  %> &euro;
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                          <%=  articulos.get(i).getDescripcion()  %>
+                </div>
+                <% 
+                LinPed linea= null;
+                if (carrito != null) {
+                	linea= carrito.getLinea(articulos.get(i).getIdArticulo());
+                }
+                %>
+                
+                <div class="col-sm-2">
+                	<input type="number" min=0 max=99 value="<%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getCantidad() : 0 %>"
+                		onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value)"></input> 
+                </div>
+                <div class="col-sm-2">
+                	<span>Subtotal: </span>
+                	<span><%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getPrecioFinal() : 0 %> &euro;</span>
                 </div>
             </div>
         </div>
-       
         <% }  %>
-       
+        
+        <h3>
+        	<span>TOTAL: </span>
+        	<b><%=carrito != null? carrito.precioTotal() : 0 %> &euro;</b>
+       	</h3>
+       <form action="carrito" method="post" id="hiddenForm">
+       		<input type="hidden" name="idArticulo" id="idArticulo" >
+       		<input type="hidden" name="precio" id="precio" >
+       		<input type="hidden" name="cantidad" id="cantidad" >
+       </form>
 </body>
 </html>
