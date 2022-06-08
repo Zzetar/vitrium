@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="Css/Estilos.css">
+    <script language="javascript" type="text/javascript" src="Script/Validar.js"></script>
+
+    <!-- <script language="javascript" type="text/javascript" src="validar.js"></script>
+    <link rel="stylesheet" type="text/css" href="Css.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <title>Crear cuenta</title>
+    <script>
+
+        function mostrar(elemento){
+        elemento.style.display = "block";
+        }
+
+        function noMostrar(elemento){
+            elemento.style.display = "none";
+        }
+
+        function entraFoco(elemento){
+            elemento.style.backgroundColor = "lightblue";
+        }
+
+        function saleFoco(elemento){
+            elemento.style.backgroundColor = "";
+        }
+
+        function entroEnFoco(elemento){
+            elemento.className="enfoco";
+        }
+
+        function salioDeFoco(elemento){
+            elemento.className=";"
+        }
+
+        function revOb(elemento){     //para lo obligatorio
+            if (esBlanco(elemento)) {
+                elemento.className="error";
+            }else{
+                elemento.className="";
+            }
+        }
+
+        //necesarios
+        function esBlanco(elemento) {
+            if (elemento.value=="") {
+                return true;
+            } else {
+                return false;	
+            }
+        }
+
+        function esNumero(elemento) {
+            if (elemento.value!="") {
+                var dato = elemento.value;
+                if (isNaN(dato)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        function longitud(elemento, min, max) {
+            if (elemento.value!="") {
+                var dato = elemento.value;
+                if (dato.length>=min && dato.length<=max) {
+                    return true;	
+                } else {
+                    return false;	
+                }
+            }
+        }
+
+        function validarStringInside(elemento,min,max,capaerror){ //para los campos tipo string de este formulario
+            if(!validarString(elemento.value,min,max)){
+                elemento.style.backgroundColor = "lightyellow";
+                elemento.style.borderColor = "red";
+                mostrar(capaerror);
+            }else{
+                elemento.style.backgroundColor = "";
+                elemento.style.borderColor = "";
+                noMostrar(capaerror);
+            }
+        }
+
+        function validarEmailInside(elemento, capaerror) {
+            if (!validarEmail(elemento)) {
+                elemento.style.backgroundColor = "lightyellow";
+                elemento.style.borderColor = "red";
+                mostrar(capaerror);
+            } else {
+                elemento.style.backgroundColor = "";
+                elemento.style.borderColor = "";
+                noMostrar(capaerror);
+            }
+        }
+
+        
+    
+
+////////////////////////////////////////
+
+        function validar() {
+            var estaTodoOK = true;
+            var mensaje = " ";
+
+
+            if (esBlanco(Nombre)) {
+                mensaje += "Nombre es obligatorio \n";
+                estaTodoOK = false;
+            } else {
+                if (!validarString(Nombre.value, 2, 100)) {    /////si queremos poner longitud sera sin ".value"/////
+                    mensaje += "El nombre debe de tener entre 2 y 100 caracteres \n";
+                    estaTodoOK = false;
+                }
+            }
+
+            if (esBlanco(Apellido1)) {
+                mensaje += "Primer apellido es obligatorio \n";
+                estaTodoOK = false;
+            } else {
+                if (!validarString(Apellido1.value, 2, 100)) {    /////si queremos poner longitud sera sin ".value"/////
+                    mensaje += "El primer apellido debe de tener entre 2 y 100 caracteres \n";
+                    estaTodoOK = false;
+                }
+            }
+
+            
+            if (esBlanco(Apellido2)) {
+                mensaje += "Segundo apellido es obligatorio \n";
+                estaTodoOK = false;
+            } else {
+                if (!validarString(Apellido2.value, 2, 100)) {    /////si queremos poner longitud sera sin ".value"/////
+                    mensaje += "El Segundo apellido debe de tener entre 0 y 100 caracteres \n";
+                    estaTodoOK = false;
+                }
+            }
+        
+            if (esBlanco(Tarjeta)) {
+                mensaje += "Debe insertar su numero de tarjeta \n";
+                estaTodoOK = false;
+            } else {
+                if (!validarNumero(Tarjeta.value,16,16)) {
+                    mensaje += "Formato de tarjeta incorrecto \n";
+                    estaTodoOK = false;
+                }
+            }
+
+            if (esBlanco(Codigo)) {
+                mensaje += "Debe Insertar su codigo CCV \n";
+                estaTodoOK = false;
+            } else {
+                if (!validarNumero(Codigo.value, 3, 3)) {
+                    mensaje += "Formato del codigo CCV incorrecto \n";
+                    estaTodoOK = false;
+                }
+            }
+
+            
+
+        
+            //////////////////////////////////////////
+
+            if (!estaTodoOK) {
+                alert(mensaje);
+            } else {
+                document.getElementById("provinciaHidden").value= document.getElementById("provincia").innerHTML;
+
+                alert("FORMULARIO CORRECTO. ENVIADO. \nNombre: "+ Nombre.value 
+                + ".\nPrimer apellido: "+ Apellido1.value
+                + ".\nSegundo apellido: "+ Apellido2.value
+                + ".\nTarjeta: "+ Tarjeta.value 
+                + ".\nCodigo: "+ Codigo.value);
+                
+            }
+            return estaTodoOK;
+        }
+
+    </script>
+    
+</head>
+
+<body>
+
+    <form id="formulario2" onsubmit="return validar()" action="cliente" method="post" >
+        <div text align="center">
+            <h1>Realiza el pago online</h1><br>
+
+            <div class="form-group">
+                Añada su nombre
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="Nombre" name="nombre" type="text" required class="form-control" placeholder="Nombre" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorNombre);" maxlength="100">
+                </div>
+                <p class="obligatorio" id="errorNombre">El Nombre debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+            </div>
+    
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6" style="padding-left:0">
+                        <div class="form-group">
+                            Añada su primer apellido
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="Apellido1" name="apellido1" type="text" required class="form-control" placeholder="Primer apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorApellido1);" maxlength="100">
+                            </div>
+                            <p class="obligatorio" id="errorApellido1">El apellido debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="padding-right:0">
+                        <div class="form-group">
+                            Añada su segundo apellido
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="Apellido2" name="apellido2" type="text" required class="form-control" placeholder="Segundo apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorApellido2);" maxlength="100">
+                            </div>
+                            <p class="obligatorio" id="errorApellido2">El apellido debe de ser obligatorio y tener entre 2 y 100 caracteres</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                Numero de tarjeta
+                <div class="input-group">
+                    <span class="input-group-addon">Codigo Postal: </span>
+                    <input type="text" id="Tarjeta" name="Tarjeta" class="form-control" required placeholder="Numero de tarjeta" onblur="validarCPInside(this,16,16,errorTarjeta)">
+                </div>
+            <p class="obligatorio" id="errorTarjeta">La tarjeta debe tener 16 digitos</p>
+            </div>
+        </div>
+        <div class="form-group">
+            Numero CCV
+            <div class="input-group">
+                <span class="input-group-addon">Codigo Postal: </span>
+                <input type="text" id="Codigo" name="Codigo" class="form-control" required placeholder="Codigo CCV" onblur="validarCPInside(this,3,3,errorCodigo)">
+            </div>
+            <p class="obligatorio" id="errorCodigo">El codigo debe tener 3 digitos</p>
+        </div>
+                
+
+        
+
+        
+
+        <div text align="center">
+        <h3><button type="submit" id="submit" value="submit">Enviar</button></h3>
+        </div>
+
+    </form>
+
+</body>
+</html>
