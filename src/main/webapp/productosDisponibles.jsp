@@ -54,6 +54,35 @@
       <%  }  %>
        
        
+       <% for(int i=0;i<articulo.List;i++){ %>
+    	   
+       
+       <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3" style="padding-left:0">
+                    <div class="form-group">
+                    	<%  articulo.List(i).get.path();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="padding-left:0">
+                    <div class="form-group">
+                    	<%  articulo.List(i).get.categoria();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                         <%  articulo.List(i).get.precio();  %>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="padding-right:0">
+                    <div class="form-group">
+                         <%  articulo.List(i).get.descripcion();  %>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <% }  %>
        
 </body>
 </html>
