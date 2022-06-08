@@ -1,25 +1,32 @@
 package servlet;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import domain.Articulo;
-import domain.Cliente;
 import exceptions.ServiceException;
 import servicios.ServicioArticulo;
-import servicios.ServicioCliente;
 
 /**
  * Servlet implementation class OperacionesCliente
  */
-@WebServlet("/Articulo")
+@WebServlet("/articulo")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+maxFileSize = 1024 * 1024 * 5, 
+maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ArticuloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final int BUFFER_SIZE = 1024;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +57,7 @@ public class ArticuloServlet extends HttpServlet {
 			sArticulo.insertarArticulo(articulo);
 			request.getSession().setAttribute("articulo", articulo);
 			
-			salida="/ProductosDisponibles.jsp";
+			salida="/productosDisponibles.jsp";
 			request.setAttribute("info","Articulo dado de alta correctamente");
 			
 		} catch (ServiceException e) {
@@ -62,14 +69,38 @@ public class ArticuloServlet extends HttpServlet {
 		getServletContext().getRequestDispatcher(salida).forward(request, response);
 	}
 
-	private Articulo articuloDePeticion(HttpServletRequest request) {
-		Articulo articulo= new Articulo();
-		articulo.setCategoria(request.getParameter("categoria"));
-		articulo.setPrecio(Integer.parseInt(request.getParameter("precio")));
-		articulo.setDescripcion(request.getParameter("descripcion"));
-		articulo.setPath(request.getParameter("path"));
+	private Articulo articuloDePeticion(HttpServletRequest request) throws ServiceException {
+		try {
+			Part imagen= request.getPart("imagen");
+			
+			File fichero= new File("/vitrium/imagenes/articulos");
+			if (!fichero.isDirectory()) {
+				fichero.mkdirs();
+			}
+			try (FileOutputStream fos= new FileOutputStream("/vitrium/imagenes/articulos/" + imagen.getSubmittedFileName());
+				InputStream is= imagen.getInputStream();) {
+				byte[] buffer= new byte[BUFFER_SIZE];
+				int leido;
+				while ((leido= is.read(buffer)) != -1) {
+					fos.write(buffer, 0, leido);
+				}
+			}
+			
+			Articulo articulo= new Articulo();
+			articulo.setCategoria(request.getParameter("categoria"));
+			articulo.setPrecio(Integer.parseInt(request.getParameter("precio")));
+			articulo.setDescripcion(request.getParameter("descripcion"));
+			articulo.setPath(imagen.getSubmittedFileName());
+			
+			return articulo;
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ServiceException(e.getMessage(), e);
+		} catch (ServletException e) {
+			e.printStackTrace();
+			throw new ServiceException(e.getMessage(), e);
+		}
 
-		return articulo;
 	}
 
 }

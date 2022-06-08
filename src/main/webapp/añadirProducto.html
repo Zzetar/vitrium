@@ -162,7 +162,7 @@
     </head>
 
 <body>
-    <form id="formulario2" onsubmit="return validar()" action="articlulo" method="post" >
+    <form id="formulario2" onsubmit="return validar()" action="articulo" method="post" enctype="multipart/form-data" >
         <div text align="center">
             <h1>Añadir producto</h1><br>
         </div>
@@ -171,7 +171,7 @@
             Añada la categoria
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
-                <input id="Categoria" name="Categoria" type="text" required class="form-control" placeholder="Categoria" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorCategoria);" maxlength="100">
+                <input id="Categoria" name="categoria" type="text" required class="form-control" placeholder="Categoria" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorCategoria);" maxlength="100">
             </div>
             <p class="obligatorio" id="errorCategoria">La categoria debe de ser obligatoria y tener entre 2 y 100 caracteres</p>
         </div>
@@ -181,7 +181,7 @@
         Añada el precio del producto
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-                <input id="Precio" name="Precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,5,errorPrecio);" maxlength="5">
+                <input id="Precio" name="precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,5,errorPrecio);" maxlength="5">
             </div>
             <p class="obligatorio" id="errorPrecio">El precio debe de ser obligatorio y tener entre 2 y 5 caracteres</p>
         </div>
@@ -191,9 +191,17 @@
             Añada una descripcion
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-                <input id="Descripcion" name="Descripcion" type="text" required class="form-control" placeholder="Descripcion" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,1000,errorDescripcion);" maxlength="1000">
+                <input id="Descripcion" name="descripcion" type="text" required class="form-control" placeholder="Descripcion" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,1000,errorDescripcion);" maxlength="1000">
             </div>
             <p class="obligatorio" id="errorDescripcion">La descripcion debe de ser obligatoria y tener entre 2 y 1000 caracteres</p>
+        </div>
+
+        <div class="form-group">
+            Imagen
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                <input id="imagen" name="imagen" type="file" required class="form-control" >
+            </div>
         </div>
 
         
