@@ -9,12 +9,13 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import daos.interfaces.ErroresBD;
 import domain.Pedido;
 import exceptions.DAOException;
 import recursos.DbQuery;
 import recursos.Recursos;
 
-public class PedidoDAO {
+public class PedidoDAO implements ErroresBD {
 	
 	private Connection con;
 

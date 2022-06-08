@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.mysql.jdbc.Statement;
 
+import daos.interfaces.ErroresBD;
 import domain.Articulo;
 
 
@@ -19,7 +20,7 @@ import recursos.Recursos;
 
 import exceptions.DAOException;
 
-public class LinPedDAO {
+public class LinPedDAO implements ErroresBD {
 	
 	private Connection con;
 

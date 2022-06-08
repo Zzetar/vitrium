@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.interfaces.ErroresBD;
 import recursos.DbQuery;
 import recursos.Recursos;
 import domain.Factura;
 import domain.Proveedor;
 import exceptions.DAOException;
 
-public class FacturaDAO {
+public class FacturaDAO implements ErroresBD {
 	
 	private Connection con;
 
