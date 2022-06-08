@@ -1,9 +1,10 @@
 package domain;
 
-import util.Validator;
+import java.io.Serializable;
+
 import exceptions.DomainException;
 
-public class Cliente {
+public class Cliente implements Serializable {
  
 	private  int idCliente;
 	private  String nombre;
@@ -89,7 +90,9 @@ public class Cliente {
 
 
 	public void setProvincia(String provincia) {
-		this.provincia = provincia;
+		if (provincia == null){
+			throw new DomainException("El codigo postal no es valido.");
+		}
 	}
 
 
@@ -167,12 +170,6 @@ public class Cliente {
 	
 	public String getprovincia() {
 		return provincia;
-	}
-	
-	public void setProvincia1(String provincia) {
-		if (provincia == null){
-			throw new DomainException("El codigo postal no es valido.");
-		}
 	}
 	
 

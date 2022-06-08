@@ -40,7 +40,7 @@
         <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
         <a href="contacto.html">Contacto</a>
         <%if (cliente == null) { %>
-        <a style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
+        <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
         <a style="float:right">Hola <%=cliente.getNombre() %></a>
         <%} %>

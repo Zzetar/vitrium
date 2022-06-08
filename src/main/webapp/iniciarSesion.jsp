@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="domain.Cliente"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -149,6 +150,14 @@
         }
         return estaTodoOK;
         }
+        <%
+        session.invalidate();
+        String mensajeInfo= (String) request.getAttribute("error");
+    	if (mensajeInfo != null) {
+    		%>alert("<%=mensajeInfo%>");<%
+    	}
+        %>
+
     </script>
 </head>
 
@@ -158,11 +167,11 @@
         <a href="index.html">Inicio</a>
         <a href="productosDisponibles.html">Productos disponibles</a>
         <a href="contacto.html">Contacto</a>
-        <a class="active" style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
+        <a class="active" style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
     </div> 
 
     <div>
-        <p><form id="formulario" action="IniciarSesion.php">
+        <p><form id="formulario" action="iniciarSesion" method="post">
             
             <div class="form-group" text align="center">
                 <h2>Inicia Sesion en Vitrium</h2><br>

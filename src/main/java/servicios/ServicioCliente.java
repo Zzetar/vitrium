@@ -243,6 +243,39 @@ public class ServicioCliente {
 		}
 		return cliente;
 	}
+	
+	public Cliente recuperarClienteByEmail(String email) throws ServiceException{
+		TransaccionesManager trans = null;
+		Cliente cliente= null;
+
+		try {
+			trans = new TransaccionesManager();
+			ClienteDAO clientedao = trans.getClienteDAO();
+			cliente = clientedao.recuperarClienteByEmail(email);
+
+
+
+
+			trans.closeCommit();
+		} catch (DAOException e) {
+			try{
+				if(trans!=null)
+				trans.closeRollback();
+			}catch (DAOException e1){
+				throw new ServiceException(e.getMessage(),e1);//Error interno
+			}
+
+			if(e.getCause()==null){
+				throw new ServiceException(e.getMessage());//Error Lógico
+			}else{
+
+				throw new ServiceException(e.getMessage(),e);//Error interno
+			}
+
+		}
+		return cliente;
+	}
+	
 	public Cliente recuperarCliente(Cliente cliente) throws ServiceException{
 		TransaccionesManager trans = null;
 
