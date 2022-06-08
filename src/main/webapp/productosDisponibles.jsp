@@ -31,7 +31,7 @@
 
     <div class="topnav">
         <a href="index.html">Inicio</a>
-        <a class="active" href="productosDisponibles.html">Productos disponibles</a>
+        <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
         <a href="contacto.html">Contacto</a>
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.html">Iniciar sesion</a>
@@ -43,7 +43,7 @@
      
     
         
-     <% if (cliente.getClase()>0) {  %>
+     <% if (cliente != null && cliente.getClase()>0) {  %>
         	<form id="crear" action="añadirProducto.html">
             <div text align="center">
                 <h2>Insertar productos</h2>
@@ -53,35 +53,6 @@
         </form>
       <%  }  %>
        
-       <% for(int i=0;i<articulo.List;i++){ %>
-    	   
-       
-       <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3" style="padding-left:0">
-                    <div class="form-group">
-                    	<%  articulo.List(i).get.path();  %>
-                    </div>
-                </div>
-                <div class="col-sm-3" style="padding-left:0">
-                    <div class="form-group">
-                    	<%  articulo.List(i).get.categoria();  %>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                         <%  articulo.List(i).get.precio();  %>
-                    </div>
-                </div>
-                <div class="col-sm-3" style="padding-right:0">
-                    <div class="form-group">
-                         <%  articulo.List(i).get.descripcion();  %>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-        <% }) %>
        
        
 </body>
