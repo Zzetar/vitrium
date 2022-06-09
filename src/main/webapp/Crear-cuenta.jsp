@@ -21,7 +21,7 @@
         }
 
         function noMostrar(elemento){
-            elemento.style.display = "none";
+        	elemento.style.display = "none";
         }
 
         function entraFoco(elemento){
@@ -193,7 +193,7 @@
                 mensaje += "Password es obligatorio \n";
                 estaTodoOK = false;
             } else {
-                if (!validarString(Usuario.value, 2, 15)) {    /////si queremos poner longitud sera sin ".value"/////
+                if (!validarString(Password.value, 2, 15)) {    /////si queremos poner longitud sera sin ".value"/////
                     mensaje += "La password debe de tener entre 2 y 15 caracteres y al menos una letra \n";
                     estaTodoOK = false;
                 }

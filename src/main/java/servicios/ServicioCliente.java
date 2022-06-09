@@ -17,6 +17,7 @@ import daos.TarifaDAO;
 
 import daos.TransaccionesManager;
 import exceptions.DAOException;
+import exceptions.DuplicateException;
 import exceptions.ServiceException;
 
 public class ServicioCliente {
@@ -25,7 +26,7 @@ public class ServicioCliente {
 	public ServicioCliente() {
 
 	}
-	public void insertarCliente(Cliente cliente) throws ServiceException{
+	public void insertarCliente(Cliente cliente) throws ServiceException, DuplicateException {
 		TransaccionesManager trans =  null;
 		ClienteDAO clienteDAO=null;
 		try {
@@ -34,6 +35,8 @@ public class ServicioCliente {
 			clienteDAO.insertarCliente(cliente);
 
 			trans.closeCommit();
+		} catch (DuplicateException e2) {
+			throw e2;
 		} catch (DAOException e) {
 
 			try{

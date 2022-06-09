@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Cliente;
+import exceptions.DuplicateException;
 import exceptions.ServiceException;
 import servicios.ServicioCliente;
 
@@ -50,7 +51,9 @@ public class ClienteServlet extends HttpServlet {
 			
 			salida="/productosDisponibles.jsp";
 			request.setAttribute("info","Cliente dado de alta correctamente");
-			
+		} catch (DuplicateException e) {
+			request.setAttribute("mensaje", "El cliente ya existe");
+			salida="/Fin";
 		} catch (ServiceException e) {
 			e.printStackTrace();// para administrador 
 			//Error interno para usuario
