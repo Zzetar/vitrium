@@ -100,7 +100,7 @@
   <% }  %>
  </table>      
  
- 
+ 	<div text align="center">
         <h3>
         	<span>TOTAL: </span>
         	<b><%=carrito != null? carrito.precioTotal() : 0 %> &euro;</b>
@@ -115,5 +115,6 @@
         <%if (cliente != null && carrito != null) { %>
         	<button onclick="location.href='validarTarjeta.html'" id="comprar">Comprar</button>
         <%} %>
+     </div>
 </body>
 </html>
