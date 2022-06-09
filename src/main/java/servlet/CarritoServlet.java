@@ -47,7 +47,11 @@ public class CarritoServlet extends HttpServlet {
 		articulo.setPath(request.getParameter("path"));
 		articulo.setDescripcion(request.getParameter("descripcion"));
 		
-		carrito.addArticulo(articulo, Integer.parseInt(request.getParameter("cantidad")));
+		try {
+			carrito.addArticulo(articulo, Integer.parseInt(request.getParameter("cantidad")));
+		} catch (NumberFormatException e) {
+			
+		}
 		
 		salida="/productosDisponibles.jsp";
 		
