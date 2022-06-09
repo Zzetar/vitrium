@@ -48,63 +48,7 @@ public class ServicioArticulo {
 	}
 
 
-	public int borrarArticulo(Articulo Articulo) throws ServiceException{
-		TransaccionesManager trans = null;
-		int borrado=0;
-		try {
-			trans = new TransaccionesManager();
-			ArticuloDAO ArticuloDAO = trans.getArticuloDAO();
-			borrado = ArticuloDAO.borrarArticulo(Articulo);
 
-
-			trans.closeCommit();
-		} catch (DAOException e) {
-			try{
-				trans.closeRollback();
-			}catch (DAOException e1){
-				throw new ServiceException(e.getMessage(),e1);//Error interno
-			}
-
-			if(e.getCause()==null){
-				throw new ServiceException(e.getMessage());//Error Lógico
-			}else{
-				e.printStackTrace();
-				throw new ServiceException(e.getMessage(),e);//Error interno
-			}
-
-		}
-		return borrado;
-	}
-
-	public Articulo recuperarArticulo(Articulo Articulo) throws ServiceException{
-		TransaccionesManager trans = null;
-
-		try {
-			trans = new TransaccionesManager();
-			ArticuloDAO ArticuloDAO = trans.getArticuloDAO();
-			Articulo = ArticuloDAO.recuperarArticulo(Articulo);
-
-
-
-			trans.closeCommit();
-		} catch (DAOException e) {
-			try{
-				trans.closeRollback();
-			}catch (DAOException e1){
-				throw new ServiceException(e.getMessage(),e1);//Error interno
-			}
-
-			if(e.getCause()==null){
-
-				throw new ServiceException(e.getMessage());//Error Lógico
-			}else{
-
-				throw new ServiceException(e.getMessage(),e);//Error interno
-			}
-
-		}
-		return Articulo;
-	}
 
 	public List<Articulo> recuperarTodosArticulo() throws ServiceException{
 		TransaccionesManager trans = null;

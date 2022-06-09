@@ -144,37 +144,9 @@ public class TransaccionesManager {
 	public ClienteDAO getClienteDAO() {
 		return new ClienteDAO(con);
 	}
-	public IvaDAO getIvaDAO() {
-		return new IvaDAO(con);
-
-	}
-	public FormaPagoDAO getFormaPagoDAO() {
-		return new FormaPagoDAO(con);
-
-	}
-	public TarifaDAO getTarifaDAO() {
-		return new TarifaDAO(con);
-
-	}
-	public daos.ProveedorDAO getProveedorDAO() {
-	
-		return new ProveedorDAO(con);
-	}
 	public daos.ArticuloDAO getArticuloDAO() {
 		
 		return new ArticuloDAO(con);
-	}
-	public daos.FamiliaDAO getFamiliaDAO() {
-		
-		return new FamiliaDAO(con);
-	}
-	public daos.ExistenciaDAO getExistenciaDAO() {
-	
-		return  new ExistenciaDAO(con);
-	}
-	public daos.AlmacenDAO getAlmacenDAO() {
-		
-		return new AlmacenDAO(con);
 	}
 	//pedidos
 	public PedidoDAO getPedidoDAO() {
@@ -187,27 +159,6 @@ public class TransaccionesManager {
 		return new LinPedDAO(con);
 	}
 
-
-	public AlbaranDAO getAlbaranDAO() {
-		
-		return new AlbaranDAO(con);
-	}
-	public LinAlbDAO getLinAlbDAO() {
-		
-		return new LinAlbDAO(con);
-	}
-	public ContadorFactDAO getContadorFactDAO() {
-		
-		return new ContadorFactDAO(con);
-	}
-	public FacturaDAO getFacturaDAO() {
-		
-		return new FacturaDAO(con);
-	}
-	public ReciboDAO getReciboDAO() {
-		
-		return new ReciboDAO(con);
-	}
 
 
 

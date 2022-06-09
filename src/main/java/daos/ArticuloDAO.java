@@ -57,59 +57,6 @@ public class ArticuloDAO implements ErroresBD {
 	}
 	
 	
-	public int modificarArticulo(Articulo articulo)throws  DAOException{
-		PreparedStatement st = null;
-		int modificado=0;
-		try {
-			st = con.prepareStatement(DbQuery.getModificarArticulo());
-			st.setString(4, articulo.getCodArt());
-			st.setString(1, articulo.getDescripcion());
-			if(articulo.getPreciMer()!=null) // OJO PUEDE SER NULO EN LA BASE DE DATOS
-				st.setDouble(2, articulo.getPreciMer());
-			else
-				st.setNull(2,  Types.DOUBLE);
-			
-			st.setString(3, articulo.getFamilia().getCodFamilia());
-			
-			// rutina de verificacion de mas de una FK
-					  
-			
-			
-			// ejecutamos el insert.			
-			modificado=st.executeUpdate();
-		} catch (SQLException e) {
-			 if (e.getErrorCode() ==ORACLE_FALLO_FK ){
-			   throw new DAOException("la familia  del articulo no existe");
-			} else {
-				throw new DAOException(DB_ERR, e);
-			}
-		} finally {
-			Recursos.closePreparedStatement(st);
-			Recursos.closePreparedStatement(sti);
-		}	
-		return modificado;
-	}
-	
-	public int borrarArticulo(Articulo articulo) throws  DAOException{
-		PreparedStatement st = null;
-		int borrado = 0;
-		try {
-			st = con.prepareStatement(DbQuery.getBorrarArticulo());
-			st.setString(1, articulo.getCodArt());
-			borrado = st.executeUpdate();
-		} catch (SQLException e) {
-			if (e.getErrorCode() == ORACLE_DELETE_FK) {
-				throw new DAOException(" No permitido borrar Articulo");
-				
-			} else {
-				throw new DAOException(DB_ERR, e);
-			}
-		} finally {
-			Recursos.closePreparedStatement(st);
-		}
-		return borrado;
-	}
-	
 	public Articulo recuperarArticulo(int idArticulo)throws  DAOException {
 		PreparedStatement st = null;
 		ResultSet rs =null ;
