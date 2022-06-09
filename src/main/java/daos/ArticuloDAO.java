@@ -110,23 +110,21 @@ public class ArticuloDAO implements ErroresBD {
 		return borrado;
 	}
 	
-	public Articulo recuperarArticulo(Articulo articulo)throws  DAOException {
+	public Articulo recuperarArticulo(int idArticulo)throws  DAOException {
 		PreparedStatement st = null;
 		ResultSet rs =null ;
-		Articulo cli=null;
-		Double percioMercado= null;
+		Articulo articulo=null;
 			try {
 				st = con.prepareStatement(DbQuery.getRecuperarArticulo());
-				st.setString(1,articulo.getCodArt() );
+				st.setInt(1, idArticulo);
 				rs=st.executeQuery();
 				if (rs.next()){
-					percioMercado= null;
-					if(rs.getObject("precio_mer") !=null )
-						percioMercado=	new Double(rs.getDouble("precio_mer")); 
-					cli=new Articulo(rs.getString(1),
-							         rs.getString(2),
-							         percioMercado,
-							         new Familia(rs.getString(4))); 
+					articulo= new Articulo();
+					articulo.setCategoria(rs.getString(1));
+					articulo.setPrecio(rs.getInt(2));
+					articulo.setDescripcion(rs.getString(3));
+					articulo.setPath(rs.getString(4));
+					articulo.setIdArticulo(idArticulo);
 					
 				}		
 				
@@ -137,7 +135,7 @@ public class ArticuloDAO implements ErroresBD {
 			Recursos.closePreparedStatement(st);
 			
 		}
-		return cli;
+		return articulo;
 	}
 	
 	public List<Articulo> recuperarTodosArticulo()throws  DAOException {

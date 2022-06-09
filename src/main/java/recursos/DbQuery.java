@@ -79,7 +79,7 @@ private static final String RecuperarTodosAlmacen = "select cod_alm, descripcion
 private static final String InsertarArticulo = "insert into articulos(categoria, precio, descripcion, path)values (?,?,?,?)";
 private static final String getModificarArticulo = "update  articulos set descripcion=?,precio_mer=?,cod_fam=? where cod_art=?";
 private static final String BorrarArticulo ="delete from articulos where cod_art=?";
-private static final String RecuperarArticulo = "select cod_art,descripcion,precio_mer,cod_fam from articulos where cod_art=?";
+private static final String RecuperarArticulo = "select categoria,precio,descripcion,path from articulos where idArticulo=?";
 private static final String RecuperarTodosArticulo = "select categoria,precio,descripcion,path,idArticulo from articulos order by categoria asc, idArticulo";
 // existencias
 private static final String InsertarExistencia = "insert into existencias ( cod_alm,cod_art,f_caducidad,stock_ini,Stock_teorico,pcmp) values(?,?,?,?,?,?)";
@@ -111,7 +111,7 @@ private static final String BorrarLinPed = null;
 private static final String BorrarTodosLinPedPedido = "delete from lin_ped where n_ped=?";
 private static final String RecuperarLinPed = null;
 private static final String RecuperarTodosLinPed = null;
-private static final String RecuperarTodosLinPedPedido = "select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=? order by cod_art";
+private static final String RecuperarTodosLinPedPedido = "select idLinea, idArticulo,  cantidad,  gastosEnvio,  precioFinal from lineapedidos where idPedido=? order by idLinea";
 private static final String RecuperarLinPedBloqueo ="select n_ped,cod_art,cantidad,cantidad_serv  from lin_ped where n_ped=?  order by cod_art for update";
 // pedido
 private static final String RecuperarPedido = "select idCliente,estadoPedido, fechaPed from pedidos  where idPedido= ?";
@@ -174,6 +174,7 @@ private static final String BorrarLinAlb = null;
 private static final String RecuperarLinAlb = null;
 private static final String RecuperarTodosLinAlbAlbaran ="select cod_albaran,cod_alm,cod_art,F_caducidad,cant_ent,precio_ent from lin_alb where cod_albaran=?";
 private static final String RecuperarTotalImporteAlbaran = "SELECT round(SUM(CANT_ENT * PRECIO_ENT),3) TOTAL  FROM LIN_ALB WHERE COD_ALBARAN = ?";
+private static final String RECUPERAR_PEDIDOS_CLIENTE = "SELECT idPedido, estadoPedido, fechaPed, importe FROM pedidos where idCliente=?";
 
 
 
@@ -617,6 +618,10 @@ private static final String RecuperarTotalImporteAlbaran = "SELECT round(SUM(CAN
 	public static String getBorrarIva() {
 		
 		return BorrarIva;
+	}
+
+	public static String getRecuperarPedidosCliente() {
+		return RECUPERAR_PEDIDOS_CLIENTE;
 	}
 
 	

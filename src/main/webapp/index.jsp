@@ -32,15 +32,10 @@
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
+        <a href="pedidos">Pedidos</a>
         <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ¿Quieres cerrar sesion?</a>
         <%} %>
     </div> 
-
-   
-    
-  
-
-  
 
   
     <div class="row">

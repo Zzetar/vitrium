@@ -140,6 +140,32 @@ public class PedidoDAO implements ErroresBD {
 		return list;
 	}
 
+	public List<Pedido> recuperarPedidosCliente(int idCliente) throws DAOException{
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		List<Pedido> list = new ArrayList<Pedido>();
+		
+		try {
+			st = con.prepareStatement(DbQuery.getRecuperarPedidosCliente());
+			st.setInt(1, idCliente);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				Pedido pedido= new Pedido();
+				pedido.setIdPedido(rs.getInt(1));
+				pedido.setEstadoPedido(rs.getString(2));
+				pedido.setFechaPed(rs.getDate(3));
+				pedido.setImporte(rs.getInt(4));
+				list.add(pedido);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(DB_ERR, e);
+		} finally {
+			Recursos.closeResultSet(rs);
+			Recursos.closePreparedStatement(st);
+		}
+		return list;
+	}
+
 
 	
 }

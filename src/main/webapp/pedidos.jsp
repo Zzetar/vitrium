@@ -18,18 +18,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
 
-    <title>Compra finalizada</title>
+    <title>Pedidos</title>
 
     <script>
         <%
         Cliente cliente=null;
-        Pedido pedido= (Pedido) request.getAttribute("pedido");
-        Collection<LinPed> lineas= (Collection<LinPed>) request.getAttribute("lineas");
+        List<Pedido> pedidos= (List<Pedido>) request.getAttribute("pedidos");
         if (session != null) {
         	cliente= (Cliente) session.getAttribute("cliente");
         }
-        if (pedido == null || lineas == null || lineas.isEmpty()) {
-        	request.setAttribute("mensaje", "No se puede acceder a la compra directamente");
+        if (pedidos == null || pedidos.isEmpty()) {
+        	request.setAttribute("mensaje", "No se puede acceder a los pedidos directamente");
         	getServletContext().getRequestDispatcher("/Fin").forward(request, response);
         }
         String mensajeInfo= (String) request.getAttribute("info");
@@ -44,20 +43,21 @@
 
     <div class="topnav">
         <a href="index.jsp">Inicio</a>
-        <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
+        <a href="productosDisponibles.jsp">Productos disponibles</a>
         <a href="contacto.jsp">Contacto</a>
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
-        <a href="pedidos">Pedidos</a>
-        <a style="float:right">Hola <%=cliente.getNombre() %></a>
+        <a class="active" href="pedidos">Pedidos</a>
+        <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ¿Quieres cerrar sesion?</a>
         <%} %>
     </div>
     
+    <%for (Pedido pedido: pedidos) { %>
     	<h2>Pedido <%=pedido.getIdPedido() %></h2>
        
        <div class="container-fluid">
-       <% for(LinPed linea: lineas){ %>
+       <% for(LinPed linea: pedido.getLineas()){ %>
             <div class="row">
                 <div class="col-sm-2">
                          <img src="articulo/imagen?fichero=<%= linea.getPath()  %>" height="100px" width="100px"> 
@@ -81,5 +81,6 @@
         	<span>TOTAL: </span>
         	<b><%=pedido.getImporte() %> &euro;</b>
        	</h3>
+       <%} %>
 </body>
 </html>

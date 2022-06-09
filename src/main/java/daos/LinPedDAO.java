@@ -222,22 +222,20 @@ public class LinPedDAO implements ErroresBD {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		List<LinPed> list = new ArrayList<LinPed>();
-		Double cantidadServida=null;
 		try {
 			st = con.prepareStatement(DbQuery.getRecuperarTodosLinPedPedido());
-			st.setInt(1, pedido.getnPed());
+			st.setInt(1, pedido.getIdPedido());
 			rs = st.executeQuery();
 			while (rs.next()) {
-				cantidadServida= null;
-				if(rs.getObject("cantidad_serv") !=null )
-					cantidadServida=	new Double(rs.getDouble("cantidad_serv")); 
-				list.add(new LinPed(
-		                      new Pedido(rs.getInt(1)),
-		                      new Articulo(rs.getString(2)),
-		                      rs.getDouble(3),
-		                      cantidadServida
-		                                         )
-		                 );
+				//idLinea, idArticulo,  cantidad,  gastosEnvio,  precioFinal,
+				LinPed linea= new LinPed();
+				linea.setIdLinea(rs.getInt(1));
+				linea.setIdArticulo(rs.getInt(2));
+				linea.setCantidad(rs.getInt(3));
+				linea.setGastosEnvio(rs.getInt(4));
+				linea.setPrecioFinal(rs.getInt(5));
+				linea.setIdPedido(pedido.getIdPedido());
+				list.add(linea);
 			}
 		} catch (SQLException e) {
 			throw new DAOException(DB_ERR, e);

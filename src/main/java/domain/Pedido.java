@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import exceptions.DomainException;
 
@@ -11,6 +12,7 @@ public class Pedido {
 	private String estadoPedido;
 	private Date fechaPed;
 	private int importe;
+	private List<LinPed> lineas;
 
 	public Pedido() {
 
@@ -69,6 +71,14 @@ public class Pedido {
 
 	public void setImporte(int importe) {
 		this.importe = importe;
+	}
+
+	public List<LinPed> getLineas() {
+		return lineas;
+	}
+
+	public void setLineas(List<LinPed> lineas) {
+		this.lineas = lineas;
 	}
 	
 	
