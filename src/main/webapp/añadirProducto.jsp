@@ -175,11 +175,11 @@
 <body>
     <form id="formulario2" onsubmit="return validar()" action="articulo" method="post" enctype="multipart/form-data" >
         <div text align="center">
-            <h1>Añadir producto</h1><br>
+            <h1>Inserte producto</h1><br>
         </div>
 
         <div class="form-group">
-            Añada la categoria
+            Inserte la categoria
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
                 <input id="Categoria" name="categoria" type="text" required class="form-control" placeholder="Categoria" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorCategoria);" maxlength="100">
@@ -189,7 +189,7 @@
 
         
         <div class="form-group">
-        Añada el precio del producto
+        Inserte el precio del producto
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
                 <input id="Precio" name="precio" type="text" required class="form-control" placeholder="Precio" onfocus="entraFoco(this)" onblur="saleFoco(this);validarNumeroInside(this,1,5,errorPrecio);" maxlength="5">
@@ -199,7 +199,7 @@
                 
 
         <div class="form-group">
-            Añada una descripcion
+            Inserte una descripcion
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
                 <input id="Descripcion" name="descripcion" type="text" required class="form-control" placeholder="Descripcion" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,1000,errorDescripcion);" maxlength="1000">
@@ -208,7 +208,7 @@
         </div>
 
         <div class="form-group">
-            Imagen
+            Inserte una Imagen
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
                 <input id="imagen" name="imagen" type="file" required class="form-control" >

@@ -7,6 +7,15 @@
 
     <link rel="stylesheet" type="text/css" href="Css/Estilos.css">
     <script language="javascript" type="text/javascript" src="Script/Validar.js"></script>
+    
+    <script>
+ <% Cliente cliente=null;
+        Carrito carrito=null;
+        if (session != null) {
+        	cliente= (Cliente) session.getAttribute("cliente");
+        	carrito= (Carrito) session.getAttribute("carrito");
+        } %>
+</script>
 
     <title>Contacto</title>
 </head>
@@ -16,8 +25,13 @@
         <a href="index.html">Inicio</a>
         <a href="productosDisponibles.jsp">Productos disponibles</a>
         <a class="active"href="contacto.html">Contacto</a>
+        <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
+        <%} else { %>
+        <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ¿Quieres cerrar sesion?</a>
+        <%} %>
     </div> 
+    
 
     <h1>Ubicacion:</h1>
 

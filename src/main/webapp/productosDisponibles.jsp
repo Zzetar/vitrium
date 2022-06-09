@@ -54,7 +54,7 @@
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
-        <a style="float:right">Hola <%=cliente.getNombre() %></a>
+        <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ¿Quieres cerrar sesion?</a>
         <%} %>
     </div> 
      
@@ -71,7 +71,35 @@
         </form>
       <%  }  %>
        
-       
+<table>
+  <tr>
+    <th>Imagen</th>
+    <th>Categoria</th>
+    <th>Precio</th>
+    <th>Descripcion</th>
+    <th>Numero de articulos</th>
+    <th>Subtotal</th>
+  </tr>
+  <% for(int i=0;i<articulos.size();i++){ %>
+  <tr>
+    <td>  <img src="articulo/imagen?fichero=<%= articulos.get(i).getPath()  %>" height="100px" width="100px"> </td>
+    <td><%=  articulos.get(i).getCategoria()  %></td>
+    <td><%=  articulos.get(i).getPrecio()  %> &euro;</td>
+    <% 
+                LinPed linea= null;
+                if (carrito != null) {
+                	linea= carrito.getLinea(articulos.get(i).getIdArticulo());
+                }
+                %>
+    <td><input type="number" min=0 max=99 value="<%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getCantidad() : 0 %>"
+        onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value,'<%=  articulos.get(i).getDescripcion()  %>' , '<%=  articulos.get(i).getPath()  %>')"></input></td>
+    <td><span>Subtotal: </span>
+        <span><%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getPrecioFinal() : 0 %> &euro;</span></td>
+  </tr>
+  <% }  %>
+ </table>      
+ 
+ 
        <div class="container-fluid">
        <% for(int i=0;i<articulos.size();i++){ %>
             <div class="row">

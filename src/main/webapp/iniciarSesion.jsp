@@ -180,7 +180,7 @@
                 <h2>Inicia Sesion en Vitrium</h2><br>
                 </div>
                 <div class="form-group">
-                    Añada su Email
+                    Inserte su Email
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">

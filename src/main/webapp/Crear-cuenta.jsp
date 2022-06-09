@@ -288,7 +288,7 @@
         </div>
 
         <div class="form-group">
-            Añada su nombre
+            Inserte su nombre
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="Nombre" name="nombre" type="text" required class="form-control" placeholder="Nombre" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorNombre);" maxlength="100">
@@ -300,7 +300,7 @@
             <div class="row">
                 <div class="col-sm-6" style="padding-left:0">
                     <div class="form-group">
-                        Añada su primer apellido
+                        Inserte su primer apellido
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="Apellido1" name="apellido1" type="text" required class="form-control" placeholder="Primer apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorApellido1);" maxlength="100">
@@ -310,7 +310,7 @@
                 </div>
                 <div class="col-sm-6" style="padding-right:0">
                     <div class="form-group">
-                        Añada su segundo apellido
+                        Inserte su segundo apellido
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="Apellido2" name="apellido2" type="text" class="form-control" placeholder="Segundo apellido" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,0,100,errorApellido2);" maxlength="100">
@@ -324,7 +324,7 @@
             <div class="row">
                 <div class="col-sm-4" style="padding-left:0">
                     <div class="form-group">
-                        Codigo Postal
+                        Inserte el codigo Postal
                         <div class="input-group">
                             <span class="input-group-addon">Codigo Postal: </span>
                             <input type="text" id="cp" name="cp" class="form-control" required placeholder="Codigo postal" onblur="validarCPInside(this,5,5,errorCP)">
@@ -334,7 +334,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        Localidad
+                       Inserte la Localidad
                         <div class="input-group">
                             <span class="input-group-addon">Localidad: </span>
                             <input id="localidad1" name="localidad1" type="text" required class="form-control" placeholder="Localidad" onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,1,20,errorLocalidad1);" maxlength="20">
@@ -344,7 +344,7 @@
                 </div>
                 <div class="col-sm-4" style="padding-right:0">
                     <div class="form-group">
-                        Provincia
+                        Inserte la Provincia
                         <div class="input-group">
                             <span class="input-group-addon">Provincia: </span>
                             <span id="provincia" class="form-control" disabled="disabled"></span>
@@ -356,7 +356,7 @@
         </div>
 
         <div class="form-group">
-            Añada su direccion
+            Inserte su direccion
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                 <input id="Direccion" name="direccion" type="text" required class="form-control" placeholder="calle... , numero... , portal... , piso... , letra..." onfocus="entraFoco(this)" onblur="saleFoco(this);validarStringInside(this,2,100,errorDireccion);" maxlength="100">
@@ -366,7 +366,7 @@
 
 
         <div class="form-group">
-            Añada su Email
+            Inserte su Email
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                 <input type="text" name="email" id="email" class="form-control" required placeholder="Email" onblur="validarEmailInside(this,errorEmail)">
@@ -375,7 +375,7 @@
         </div>
 
         <div class="form-group">
-            Añada su password
+            Inserte su password
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="Password" name="password" type="password" required class="form-control" placeholder="Password" onfocus="entraFoco(this)" onblur="saleFoco(this);validarCodigoInside(this,2,12,errorPassword);" maxlength="12">
