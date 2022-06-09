@@ -165,7 +165,7 @@ private static final String RecuperarTodosAlbaranProveedorN1 = "SELECT cod_albar
 					"WHERE ALB_FACT = 'N' and cod_pro = ?) ";
 ;
 
-private static final String RECUPERAR_CLIENTE_BY_EMAIL = "SELECT nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, contraseña, clase FROM clientes WHERE email= ?";
+private static final String RECUPERAR_CLIENTE_BY_EMAIL = "SELECT nombre, apellido1, apellido2, provincia, localidad, direccion, codigoPostal, contraseña, clase, idCliente FROM clientes WHERE email= ?";
 
 // LIN_ALB
 private static final String InsertarLinAlb = "insert into lin_alb( cod_albaran,cod_alm,cod_art,F_caducidad,cant_ent,precio_ent)values (?,?,?,?,?,?)";

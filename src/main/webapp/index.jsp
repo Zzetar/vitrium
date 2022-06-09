@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="domain.Carrito"%>
+<%@page import="domain.Cliente"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -30,7 +32,7 @@
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>
-        <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ï¿½Quieres cerrar sesion?</a>
+        <a style="float:right" href="iniciarSesion.jsp">Hola <%=cliente.getNombre() %> ¿Quieres cerrar sesion?</a>
         <%} %>
     </div> 
 

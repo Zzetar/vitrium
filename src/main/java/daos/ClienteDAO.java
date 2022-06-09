@@ -250,6 +250,7 @@ CallableStatement st = null;
 					cliente.setCodigoPostal(rs.getInt(7));
 					cliente.setPassword(rs.getString(8));
 					cliente.setClase(rs.getInt(9));
+					cliente.setIdCliente(rs.getInt(10));
 				}		
 				
 			} catch (SQLException e) {

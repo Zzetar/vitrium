@@ -184,7 +184,7 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 12) {
-		document.getElementById("provincia").innerHTML = "Castellón";
+		document.getElementById("provincia").innerHTML = "Castell&oacute;n";
 	}
 
 	if (cp == 13) {

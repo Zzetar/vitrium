@@ -91,6 +91,7 @@
                 	linea= carrito.getLinea(articulos.get(i).getIdArticulo());
                 }
                 %>
+    <td><%=  articulos.get(i).getDescripcion()  %></td>
     <td><input type="number" min=0 max=99 value="<%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getCantidad() : 0 %>"
         onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value,'<%=  articulos.get(i).getDescripcion()  %>' , '<%=  articulos.get(i).getPath()  %>')"></input></td>
     <td><span>Subtotal: </span>
@@ -100,40 +101,6 @@
  </table>      
  
  
-       <div class="container-fluid">
-       <% for(int i=0;i<articulos.size();i++){ %>
-            <div class="row">
-                <div class="col-sm-2">
-                         <img src="articulo/imagen?fichero=<%= articulos.get(i).getPath()  %>" height="100px" width="100px"> 
-                </div>
-                <div class="col-sm-2">
-                    	<%=  articulos.get(i).getCategoria()  %>
-                </div>
-                <div class="col-sm-2">
-                         <%=  articulos.get(i).getPrecio()  %> &euro;
-                </div>
-                <div class="col-sm-2">
-                         <%=  articulos.get(i).getDescripcion()  %>
-                </div>
-                <% 
-                LinPed linea= null;
-                if (carrito != null) {
-                	linea= carrito.getLinea(articulos.get(i).getIdArticulo());
-                }
-                %>
-                
-                <div class="col-sm-2">
-                	<input type="number" min=0 max=99 value="<%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getCantidad() : 0 %>"
-                		onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value,'<%=  articulos.get(i).getDescripcion()  %>' , '<%=  articulos.get(i).getPath()  %>')"></input> 
-                </div>
-                <div class="col-sm-2">
-                	<span>Subtotal: </span>
-                	<span><%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getPrecioFinal() : 0 %> &euro;</span>
-                </div>
-            </div>
-        <% }  %>
-        </div>
-        
         <h3>
         	<span>TOTAL: </span>
         	<b><%=carrito != null? carrito.precioTotal() : 0 %> &euro;</b>
