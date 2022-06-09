@@ -39,9 +39,9 @@
 <body>
 
     <div class="topnav">
-        <a href="index.html">Inicio</a>
+        <a href="index.jsp">Inicio</a>
         <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="contacto.jsp">Contacto</a>
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>

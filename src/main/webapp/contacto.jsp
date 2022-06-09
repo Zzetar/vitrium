@@ -22,9 +22,9 @@
 <body>
 
     <div class="topnav">
-        <a href="index.html">Inicio</a>
+        <a href="index.jsp">Inicio</a>
         <a href="productosDisponibles.jsp">Productos disponibles</a>
-        <a class="active"href="contacto.html">Contacto</a>
+        <a class="active"href="contacto.jsp">Contacto</a>
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
         <%} else { %>

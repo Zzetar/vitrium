@@ -276,9 +276,9 @@
 
 <body>
     <div class="topnav">
-        <a href="index.html">Inicio</a>
-        <a href="productosDisponibles.html">Productos disponibles</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="index.jsp">Inicio</a>
+        <a href="productosDisponibles.jsp">Productos disponibles</a>
+        <a href="contacto.jsp">Contacto</a>
         <a class="active" style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
     </div> 
 
