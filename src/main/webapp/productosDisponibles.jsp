@@ -19,10 +19,12 @@
     <title>Productos disponibles</title>
 
     <script>
-    	function cambiarLinea (idArticulo, precio, cantidad) {
+    	function cambiarLinea (idArticulo, precio, cantidad, descripcion, path) {
     		document.getElementById("idArticulo").value=idArticulo;
     		document.getElementById("precio").value=precio;
     		document.getElementById("cantidad").value=cantidad;
+    		document.getElementById("descripcion").value=descripcion;
+    		document.getElementById("path").value=path;
     		document.getElementById("hiddenForm").submit();
     	}
         <%
@@ -70,10 +72,8 @@
       <%  }  %>
        
        
-       <% for(int i=0;i<articulos.size();i++){ %>
-    	   
-       
        <div class="container-fluid">
+       <% for(int i=0;i<articulos.size();i++){ %>
             <div class="row">
                 <div class="col-sm-2">
                          <img src="articulo/imagen?fichero=<%= articulos.get(i).getPath()  %>" height="100px" width="100px"> 
@@ -96,15 +96,15 @@
                 
                 <div class="col-sm-2">
                 	<input type="number" min=0 max=99 value="<%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getCantidad() : 0 %>"
-                		onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value)"></input> 
+                		onchange="cambiarLinea(<%=  articulos.get(i).getIdArticulo()  %>,<%=  articulos.get(i).getPrecio()  %>, this.value,'<%=  articulos.get(i).getDescripcion()  %>' , '<%=  articulos.get(i).getPath()  %>')"></input> 
                 </div>
                 <div class="col-sm-2">
                 	<span>Subtotal: </span>
                 	<span><%= linea != null? carrito.getLinea(articulos.get(i).getIdArticulo()).getPrecioFinal() : 0 %> &euro;</span>
                 </div>
             </div>
-        </div>
         <% }  %>
+        </div>
         
         <h3>
         	<span>TOTAL: </span>
@@ -114,6 +114,8 @@
        		<input type="hidden" name="idArticulo" id="idArticulo" >
        		<input type="hidden" name="precio" id="precio" >
        		<input type="hidden" name="cantidad" id="cantidad" >
+       		<input type="hidden" name="descripcion" id="descripcion" >
+       		<input type="hidden" name="path" id="path" >
        </form>
         <%if (cliente != null && carrito != null) { %>
         	<button onclick="location.href='validarTarjeta.html'" id="comprar">Comprar</button>

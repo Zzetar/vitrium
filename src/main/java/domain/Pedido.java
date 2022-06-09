@@ -9,7 +9,8 @@ public class Pedido {
 	private int idPedido;
 	private int idCliente;
 	private String estadoPedido;
-	Date fechaPed;
+	private Date fechaPed;
+	private int importe;
 
 	public Pedido() {
 
@@ -60,6 +61,14 @@ public class Pedido {
 		builder.append(fechaPed);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public int getImporte() {
+		return importe;
+	}
+
+	public void setImporte(int importe) {
+		this.importe = importe;
 	}
 	
 	

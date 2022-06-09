@@ -169,8 +169,6 @@
             if (!estaTodoOK) {
                 alert(mensaje);
             } else {
-                document.getElementById("provinciaHidden").value= document.getElementById("provincia").innerHTML;
-
                 alert("FORMULARIO CORRECTO. ENVIADO. \nNombre: "+ Nombre.value 
                 + ".\nPrimer apellido: "+ Apellido1.value
                 + ".\nSegundo apellido: "+ Apellido2.value
@@ -187,7 +185,7 @@
 
 <body>
 
-    <form id="formulario2" onsubmit="return validar()" action="cliente" method="post" >
+    <form id="formulario2" onsubmit="return validar()" action="comprar" method="post" >
         <div text align="center">
             <h1>Realiza el pago online</h1><br>
         </div>

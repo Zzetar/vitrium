@@ -91,6 +91,7 @@ CREATE TABLE `facturas` (
 
 CREATE TABLE `lineapedidos` (
   `idLinea` int(11) NOT NULL,
+  `idPedido` int(11) NOT NULL,
   `idArticulo` int(11) NOT NULL,
   `cantidad` int(4) NOT NULL,
   `gastosEnvio` int(11) NOT NULL,
@@ -106,9 +107,9 @@ CREATE TABLE `lineapedidos` (
 CREATE TABLE `pedidos` (
   `idPedido` int(11) NOT NULL,
   `idCliente` int(11) NOT NULL,
-  `idLinea` int(11) NOT NULL,
   `estadoPedido` varchar(30) CHARACTER SET utf16 COLLATE utf16_spanish_ci DEFAULT NULL,
-  `fechaPed` date DEFAULT NULL
+  `fechaPed` date DEFAULT NULL,
+  `importe`int(11)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -174,7 +175,9 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `lineapedidos`
   MODIFY `idLinea` int(11) NOT NULL AUTO_INCREMENT;
-
+  
+ALTER TABLE `pedidos`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Restricciones para tablas volcadas
 --

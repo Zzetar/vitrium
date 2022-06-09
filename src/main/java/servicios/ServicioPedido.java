@@ -1,6 +1,7 @@
 package servicios;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import util.Teclado;
@@ -14,24 +15,7 @@ import exceptions.DAOException;
 import exceptions.ServiceException;
 public class ServicioPedido {
 	public ServicioPedido() {}
-	private void quitarDuplicados(List<LinPed> lista) {
-		int i=1;
-		int j;
-		while (i<lista.size()){
-			j=0;
-			while( j<i && !lista.get(i).getArticulo().getCodArt().equals
-					(lista.get(j).getArticulo().getCodArt())){
-				j++;
-			}
-			if(j==i) 	 // no encontrado	
-				i++;
-			else{
-				lista.get(j).setCantidad(lista.get(j).getCantidad()+lista.get(i).getCantidad());
-				lista.remove(i);
-			}
-		}
-	}
-	public   void insertarPedidoCompleto(Pedido pedido,List<LinPed> lista ) throws ServiceException{
+	public   void insertarPedidoCompleto(Pedido pedido,Collection<LinPed> lista ) throws ServiceException{
 		TransaccionesManager trans = null ;
 		try {
 			
@@ -41,11 +25,10 @@ public class ServicioPedido {
 			pedidodao.insertarPedido(pedido);
 			// inserto todas las lineas del pedido
 			LinPedDAO linpeddao = trans.getLinPedDAO();
-			if(lista.size()!=0  ){	
-				if (lista.size()>1 ) quitarDuplicados(lista);
-				for(int i=0;i<lista.size();i++){
-				 lista.get(i).setPedido(pedido)	;
-				  linpeddao.insertarLinPed(lista.get(i));
+			if(lista.size()!=0  ){
+				for(LinPed linea: lista){
+					linea.setIdPedido(pedido.getIdPedido())	;
+					linpeddao.insertarLinPed(linea);
 				}
 				trans.closeCommit();	
 			}else{

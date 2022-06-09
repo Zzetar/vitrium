@@ -1,260 +1,72 @@
 package domain;
 
-import exceptions.DomainException;
-import util.Validator;
+import java.io.Serializable;
 
-public class LinPed {
+public class LinPed implements Serializable {
 	private int idLinea;
 	//private Articulo articulo;
 	private int idArticulo; 
 	private int cantidad; 
 	private int gastosEnvio; 
 	private int precioFinal;
+	private int idPedido;
 	
-
-
-
-	public LinPed() {
-	}
-
-
-
-
+	
+	private String descripcion;
+	private String path;
+	
 	public int getIdLinea() {
 		return idLinea;
 	}
-
-
-
-
 	public void setIdLinea(int idLinea) {
 		this.idLinea = idLinea;
 	}
-
-
-
-
 	public int getIdArticulo() {
 		return idArticulo;
 	}
-
-
-
-
 	public void setIdArticulo(int idArticulo) {
 		this.idArticulo = idArticulo;
 	}
-
-
-
-
 	public int getCantidad() {
 		return cantidad;
 	}
-
-
-
-
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-
-
-
-
 	public int getGastosEnvio() {
 		return gastosEnvio;
 	}
-
-
-
-
 	public void setGastosEnvio(int gastosEnvio) {
 		this.gastosEnvio = gastosEnvio;
 	}
-
-
-
-
 	public int getPrecioFinal() {
 		return precioFinal;
 	}
-
-
-
-
 	public void setPrecioFinal(int precioFinal) {
 		this.precioFinal = precioFinal;
 	}
-
-
-
-
+	public int getIdPedido() {
+		return idPedido;
+	}
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("LinPed [idLinea=");
-		builder.append(idLinea);
-		builder.append(", idArticulo=");
-		builder.append(idArticulo);
-		builder.append(", cantidad=");
-		builder.append(cantidad);
-		builder.append(", gastosEnvio=");
-		builder.append(gastosEnvio);
-		builder.append(", precioFinal=");
-		builder.append(precioFinal);
-		builder.append("]");
-		return builder.toString();
+		return "LinPed [idLinea=" + idLinea + ", idArticulo=" + idArticulo + ", cantidad=" + cantidad + ", gastosEnvio="
+				+ gastosEnvio + ", precioFinal=" + precioFinal + ", idPedido=" + idPedido + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	/*
-	public LinPed(Pedido pedido, Articulo articulo) {
-		
-		this.pedido = pedido;
-		this.articulo = articulo;
-		
-	}
-
-	public LinPed(Pedido pedido, Articulo articulo, double cantidad,
-			Double cantidadServ) {
-		
-		this.pedido = pedido;
-		this.articulo = articulo;
-		this.cantidad = cantidad;
-		this.cantidadServ = cantidadServ;
-		
-	}
-	public LinPed(Pedido pedido, Articulo articulo, double cantidad
-			) {
-		
-		this.pedido = pedido;
-		this.articulo = articulo;
-		this.cantidad = cantidad;
-		
-		
-	}
-
-	
-
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		if (pedido != null) {
-			this.pedido = pedido;
-		} else throw new DomainException("El pedido es obligatorio");
-	}
-
-	public Articulo getArticulo() {
-		return articulo;
-	}
-
-	public void setArticulo (Articulo articulo) {
-		if (articulo != null) {
-			this.articulo = articulo;
-		} else throw new DomainException("El artículo es obligatorio");
-		
-	}
-
-	public double getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(double cantidad) {
-		
-		if (cantidad > 0)
-			if(Validator.lengthDecimal(cantidad, 10,3))
-				 this.cantidad = cantidad;
-				
-			else
-				throw new DomainException("la cantidad del pedido,longitud demasiado larga");
-		     
-			
-		else 
-			throw new DomainException("Cantidad no válida");
-	}
-
-	public Double getCantidadServ() {
-		return cantidadServ;
-	}
-
-	public void setCantidadServ(Double cantidadServ) {
-		if (cantidadServ != null){
-			if (cantidadServ<=cantidad){
-			if (cantidadServ > 0)
-				if(Validator.lengthDecimal(cantidadServ, 10,3))
-					this.cantidadServ = cantidadServ;
-				else
-					throw new DomainException("la cantidad servida del pedido,no valida,longitud demasiado larga");
-					
-				
-				
-			else throw new DomainException("Cantidad servida no válida");
-			}else{
-				throw new DomainException("Cantidad servida menor o igual que cantidad");
-			}
-				
-		} else this.cantidadServ = null;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((articulo == null) ? 0 : articulo.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(cantidad);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result
-				+ ((cantidadServ == null) ? 0 : cantidadServ.hashCode());
-		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LinPed other = (LinPed) obj;
-		if (articulo == null) {
-			if (other.articulo != null)
-				return false;
-		} else if (!articulo.equals(other.articulo))
-			return false;
-		if (Double.doubleToLongBits(cantidad) != Double
-				.doubleToLongBits(other.cantidad))
-			return false;
-		if (cantidadServ == null) {
-			if (other.cantidadServ != null)
-				return false;
-		} else if (!cantidadServ.equals(other.cantidadServ))
-			return false;
-		if (pedido == null) {
-			if (other.pedido != null)
-				return false;
-		} else if (!pedido.equals(other.pedido))
-			return false;
-		return true;
-	}
-
-	*/
 	
 }

@@ -1,14 +1,18 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Carrito implements Serializable {
+	private static final long serialVersionUID = 6380963834932038155L;
 	private Map<Integer,LinPed> lineasPedido= new HashMap<>();
 	
 	public void addArticulo(Articulo articulo, int cantidad) {
-		if (lineasPedido.containsKey(articulo.getIdArticulo())) {
+		if (cantidad == 0) {
+			lineasPedido.remove(articulo.getIdArticulo());
+		} else if (lineasPedido.containsKey(articulo.getIdArticulo())) {
 			lineasPedido.get(articulo.getIdArticulo()).setCantidad(cantidad);
 			lineasPedido.get(articulo.getIdArticulo()).setPrecioFinal(cantidad * articulo.getPrecio());
 		} else {
@@ -16,6 +20,8 @@ public class Carrito implements Serializable {
 			linea.setIdArticulo(articulo.getIdArticulo());
 			linea.setCantidad(cantidad);
 			linea.setPrecioFinal(cantidad * articulo.getPrecio());
+			linea.setDescripcion(articulo.getDescripcion());
+			linea.setPath(articulo.getPath());
 			lineasPedido.put(articulo.getIdArticulo(), linea);
 		}
 	}
@@ -31,5 +37,13 @@ public class Carrito implements Serializable {
 	
 	public LinPed getLinea(int idArticulo) {
 		return lineasPedido.get(idArticulo);
+	}
+
+	public boolean isVacio() {
+		return lineasPedido.isEmpty();
+	}
+	
+	public Collection<LinPed> getLineasPedido() {
+		return lineasPedido.values();
 	}
 }

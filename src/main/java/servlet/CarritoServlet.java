@@ -44,6 +44,8 @@ public class CarritoServlet extends HttpServlet {
 		Articulo articulo= new Articulo();
 		articulo.setIdArticulo(Integer.parseInt(request.getParameter("idArticulo")));
 		articulo.setPrecio(Integer.parseInt(request.getParameter("precio")));
+		articulo.setPath(request.getParameter("path"));
+		articulo.setDescripcion(request.getParameter("descripcion"));
 		
 		carrito.addArticulo(articulo, Integer.parseInt(request.getParameter("cantidad")));
 		
