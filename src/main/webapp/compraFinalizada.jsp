@@ -44,7 +44,7 @@
 
     <div class="topnav">
         <a href="index.jsp">Inicio</a>
-        <a class="active" href="productosDisponibles.jsp">Productos disponibles</a>
+        <a href="productosDisponibles.jsp">Productos disponibles</a>
         <a href="contacto.jsp">Contacto</a>
         <%if (cliente == null) { %>
         <a style="float:right" href="iniciarSesion.jsp">Iniciar sesion</a>
@@ -54,7 +54,7 @@
         <%} %>
     </div>
     
-    	<h2>Pedido <%=pedido.getIdPedido() %></h2>
+    	<h2>Resumen pedido <%=pedido.getIdPedido() %></h2>
        
        <div class="container-fluid">
        <% for(LinPed linea: lineas){ %>
