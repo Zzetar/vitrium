@@ -28,6 +28,10 @@
         if (session != null) {
         	cliente= (Cliente) session.getAttribute("cliente");
         }
+        if (pedido == null || lineas == null || lineas.isEmpty()) {
+        	request.setAttribute("mensaje", "No se puede acceder a la compra directamente");
+        	getServletContext().getRequestDispatcher("/Fin").forward(request, response);
+        }
         String mensajeInfo= (String) request.getAttribute("info");
     	if (mensajeInfo != null) {
     		%>alert("<%=mensajeInfo%>");<%
