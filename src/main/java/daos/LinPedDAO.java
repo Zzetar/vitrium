@@ -33,7 +33,7 @@ public class LinPedDAO implements ErroresBD {
 		
 		try {
 			st = con.prepareStatement(DbQuery.getInsertarLinPed(), Statement.RETURN_GENERATED_KEYS);
-			st.setInt(1, linped.getIdLinea());
+			st.setInt(1, linped.getIdPedido());
 			st.setInt(2, linped.getIdArticulo());
 			st.setInt(3, linped.getCantidad());
 			st.setInt(4, linped.getGastosEnvio());
