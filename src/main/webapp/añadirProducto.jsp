@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="Css.css"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
-        <title>Crear cuenta</title>
+        <title>AÃ±adir producto</title>
         <script>
     
             function mostrar(elemento){
@@ -221,7 +221,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3><button type="submit" id="submit" value="submit">Añadir</button></h3>
+                        <h3><button type="submit" id="submit" value="submit">Aï¿½adir</button></h3>
                     </div>
                     <div class="col-sm-6">
                         <button id="submit2" onclick="location.href='productosDisponibles.jsp'">Volver atras</button>

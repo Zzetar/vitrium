@@ -56,14 +56,14 @@
 
     Todas nuestras piezas estan echas a mano, ya sea una pieza de tiffanys, una pieza esta&ntilde;ada, una pieza fundida, echa de fritas y fundida o pegado por ultravioleta.<br>
 
-    <h2 text align="center">Los distinto metodos que utilizamos para trabajar el vidrio son:</h2>
+    <h2 text align="center">Los distintos metodos que utilizamos para trabajar el vidrio son:</h2>
     <ul class="a">
-      <li>El metodo tiffanys es un metodo de soldadura el cual las piezas de cristal una vez cortadas y pulidas en la forma requerida, se recubren con un patina de cobre y se funden entre si con un soldador y esta&ntilde;o.</li>
+      <li>El metodo tiffanys es un metodo de soldadura el cual las piezas de cristal una vez cortadas y pulido en la forma requerida, se recubren con un patina de cobre y se funden entre si con un soldador y esta&ntilde;o.</li>
       <li>El metodo de esta&ntilde;ado con plomo, se cortan y pulen las piezas, y se unen mediante unas barras en forma de H de plomo y se unen en las intersecciones de estas con mas plomo, este metodo suele utilizarse en vidrieras.</li>
-      <li>El metodo de fusion, es cortar piezas  medida y meterlas a un horno de fundicion donde podremos dar forma a las piezas, fusionar piezas y fusionar piezas con materiales distintos como cobre, bronce...</li>
+      <li>El metodo de fusion, es cortar piezas  medida y meterlos a un horno de fundicion donde podremos dar forma a las piezas, fusionar piezas y fusionar piezas con materiales distintos como cobre, bronce...</li>
       <li>El metodo de luz UV, se cortan y pulen las piezas de cristal y se unene mediante una resina transparente, la cual al estar sometida a la luz UV se solidifica haciendo una union muy fuerte entre ambas piezas.</li>
-      <li>El metodo de fritas es, cuando restos de vidrio de un mismo material que ya no se pueden utilizar, se machacan y se hacen polvo o polvo grueso, y este se fusiona en el horno mediante un molde de la pieza a realizar, dando lugar a una pieza echa de firtas, suelen ser muy bellas, pero extremadamente fragiles.</li>
-      <li>El metodo del chorro de arena, es cuando sobre un vidrio normalmente transparente se somete al chorro de arena creando con este una imagen ya que alli donde folpea se convierte en translucido.</li>
+      <li>El metodo de fritas es, cuando restos de vidrio de un mismo material que ya no se pueden utilizar, se machacan y se hacen polvo o polvo grueso, y este se fusiona en el horno mediante un molde de la pieza a realizar, dando lugar a una pieza echa de fritas, suelen ser muy bellas, pero extremadamente fragiles.</li>
+      <li>El metodo del chorro de arena, es cuando sobre un vidrio normalmente transparente se somete al chorro de arena creando con este una imagen ya que alli donde golpea se convierte en translucido.</li>
   </ul>
    
 

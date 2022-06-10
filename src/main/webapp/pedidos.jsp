@@ -56,26 +56,22 @@
     <%for (Pedido pedido: pedidos) { %>
     	<h2>Pedido <%=pedido.getIdPedido() %></h2>
        
-       <div class="container-fluid">
-       <% for(LinPed linea: pedido.getLineas()){ %>
-            <div class="row">
-                <div class="col-sm-2">
-                         <img src="articulo/imagen?fichero=<%= linea.getPath()  %>" height="100px" width="100px"> 
-                </div>
-                <div class="col-sm-2">
-                         <%=  linea.getDescripcion()  %>
-                </div>
-                
-                <div class="col-sm-2">
-                	<span><%=linea.getCantidad()%></span>
-                </div>
-                <div class="col-sm-2">
-                	<span>Subtotal: </span>
-                	<span><%=linea.getPrecioFinal()%></span>
-                </div>
-            </div>
-        <% }  %>
-        </div>
+        <table>
+            <tr>
+              <th>Imagen</th>
+              <th>Descripcion</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+            <% for(LinPed linea: pedido.getLineas()){ %>
+            <tr>
+              <td>   <img src="articulo/imagen?fichero=<%= linea.getPath()  %>" height="100px" width="100px"> </td>
+              <td><%=  linea.getDescripcion()  %></td>
+              <td><%=linea.getCantidad()%></td>
+              <td> <span>Subtotal: </span> <%=linea.getPrecioFinal()%> &euro; </td>
+            </tr>
+            <% }  %>
+           </table>    
         
         <h3>
         	<span>TOTAL: </span>
