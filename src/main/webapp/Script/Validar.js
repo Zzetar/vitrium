@@ -140,7 +140,7 @@ function validarISBNInside(elemento,min,max,capaError,errorISBN) {
 
 function codigoProvincia(cp) {
 	if (cp == 01) {
-		document.getElementById("provincia").innerHTML = "Álava";
+		document.getElementById("provincia").innerHTML = "Alava";
 	}
 
 	if (cp == 02) {
@@ -156,7 +156,7 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 05) {
-		document.getElementById("provincia").innerHTML = "Ávila";
+		document.getElementById("provincia").innerHTML = "Avila";
 	}
 
 	if (cp == 06) {
@@ -176,15 +176,15 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 10) {
-		document.getElementById("provincia").innerHTML = "Cáceres";
+		document.getElementById("provincia").innerHTML = "Caceres";
 	}
 
 	if (cp == 11) {
-		document.getElementById("provincia").innerHTML = "Cádiz";
+		document.getElementById("provincia").innerHTML = "Cadiz";
 	}
 
 	if (cp == 12) {
-		document.getElementById("provincia").innerHTML = "Castell&oacute;n";
+		document.getElementById("provincia").innerHTML = "Castellon";
 	}
 
 	if (cp == 13) {
@@ -192,11 +192,11 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 14) {
-		document.getElementById("provincia").innerHTML = "Córdoba";
+		document.getElementById("provincia").innerHTML = "Cordoba";
 	}
 
 	if (cp == 15) {
-		document.getElementById("provincia").innerHTML = "La Coruña";
+		document.getElementById("provincia").innerHTML = "La Coru&ntilde;a";
 	}
 
 	if (cp == 16) {
@@ -216,7 +216,7 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 20) {
-		document.getElementById("provincia").innerHTML = "Guipúzcoa";
+		document.getElementById("provincia").innerHTML = "Guipuzcoa";
 	}
 
 	if (cp == 21) {
@@ -228,15 +228,15 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 23) {
-		document.getElementById("provincia").innerHTML = "Jaén";
+		document.getElementById("provincia").innerHTML = "Jaen";
 	}
 
 	if (cp == 24) {
-		document.getElementById("provincia").innerHTML = "León";
+		document.getElementById("provincia").innerHTML = "Leon";
 	}
 
 	if (cp == 25) {
-		document.getElementById("provincia").innerHTML = "Lérida";
+		document.getElementById("provincia").innerHTML = "Lerida";
 	}
 
 	if (cp == 26) {
@@ -252,7 +252,7 @@ function codigoProvincia(cp) {
 	}
 
 	if (cp == 29) {
-		document.getElementById("provincia").innerHTML = "Málaga";
+		document.getElementById("provincia").innerHTML = "Malaga";
 	}
 
 	if (cp == 30) {

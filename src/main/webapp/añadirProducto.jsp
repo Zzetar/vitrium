@@ -221,7 +221,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3><button type="submit" id="submit" value="submit">A�adir</button></h3>
+                        <h3><button type="submit" id="submit" value="submit">A&ntilde;adir</button></h3>
                     </div>
                     <div class="col-sm-6">
                         <button id="submit2" onclick="location.href='productosDisponibles.jsp'">Volver atras</button>

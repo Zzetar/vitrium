@@ -28,7 +28,7 @@
         	cliente= (Cliente) session.getAttribute("cliente");
         }
         if (pedidos == null || pedidos.isEmpty()) {
-        	request.setAttribute("mensaje", "No se puede acceder a los pedidos directamente");
+        	request.setAttribute("mensaje", "No se puede acceder a los pedidos sin tener pedidos");
         	getServletContext().getRequestDispatcher("/Fin").forward(request, response);
         }
         String mensajeInfo= (String) request.getAttribute("info");
@@ -53,13 +53,16 @@
         <%} %>
     </div>
     
-    <%for (Pedido pedido: pedidos) { %>
-    	<h2>Pedido <%=pedido.getIdPedido() %></h2>
+    <div text align="center">
+    	<%for (Pedido pedido: pedidos) { %>
+    		<h2>Pedido <%=pedido.getIdPedido() %></h2>
+    
        
         <table>
             <tr>
               <th>Imagen</th>
               <th>Descripcion</th>
+              <th>Estado</th>
               <th>Cantidad</th>
               <th>Precio</th>
             </tr>
@@ -67,16 +70,20 @@
             <tr>
               <td>   <img src="articulo/imagen?fichero=<%= linea.getPath()  %>" height="100px" width="100px"> </td>
               <td><%=  linea.getDescripcion()  %></td>
+              <td><%=  pedido.getEstadoPedido() %> </td>
               <td><%=linea.getCantidad()%></td>
               <td> <span>Subtotal: </span> <%=linea.getPrecioFinal()%> &euro; </td>
             </tr>
             <% }  %>
-           </table>    
+       </table>    
         
-        <h3>
-        	<span>TOTAL: </span>
-        	<b><%=pedido.getImporte() %> &euro;</b>
-       	</h3>
+        <div text align="right">
+	        <h3>
+	        	<span>TOTAL: </span>
+	        	<b><%=pedido.getImporte() %> &euro;</b>
+	       	</h3><br>
+       	</div>
        <%} %>
+       </div>
 </body>
 </html>
